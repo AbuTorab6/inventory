@@ -1,0 +1,273 @@
+/***************************************/
+/**********Besic Set up*****************/
+/***************************************/
+
+*
+{
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+}
+
+html,body
+{   
+font-family: 'Montserrat', sans-serif;
+
+text-rendering: optimizeLegibility;
+background-color: rgb(248, 249, 250);
+
+}
+
+.row
+{
+    width: 1140px;
+    margin: auto;
+}
+
+section
+{
+    overflow: hidden;
+    padding: 50px 0px;
+}
+
+/***************************************/
+/**********Navigation Bar*****************/
+/***************************************/
+
+.navigation-bg
+{
+    background-color: #ffffff;
+    color: black;
+    box-shadow: 0px 0.5px 5px rgb(136, 136, 136);
+}
+.navigation-brand
+{
+    color: black;
+    
+}
+
+.navigation-brand-text
+{
+    border-bottom: 2px solid rgb(114, 201, 182);
+}
+.navigation-brand:hover
+{
+    color: black;
+}
+
+.nav-logo-open
+{
+    color: rgb(114, 201, 182);
+    margin-right: 10px;
+    margin-left: 150px;
+
+    transition: 0.3s;
+}
+
+
+.nav-logo-close
+{
+    color: rgb(114, 201, 182);
+    margin-right: 10px;
+    margin-left: 0px;
+    transition: 0.3s;
+}
+
+.nav-logo:hover
+{
+    cursor: pointer;
+}
+/***************************************/
+/**********Drop down*****************/
+/***************************************/
+.drp-down-img
+{
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+}
+
+
+.drp-down-content
+{
+    width: 260px;
+
+    position: absolute;
+    right: 20px;
+
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 2px;
+    box-shadow:2px 2px 8px rgb(136, 136, 136);
+
+    display: none;
+    transition:2s;
+}
+
+.drp-down:hover .drp-down-content
+{
+    display: block;
+}
+
+.drp-down-content-img
+{
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    margin-left: 85px;
+}
+
+.drp-down-content-info h6
+{
+    text-align: center;
+}
+.drp-down-item
+{
+    display: block;
+    color: black;
+    text-decoration: none;
+    margin-bottom: 10px;
+}
+.drp-down-item:hover
+{
+    cursor: pointer;
+    border-left: 10px solid rgb(114, 201, 182);
+    background-color: rgba(114, 201, 182, 0.37);
+    color: black;
+    padding: 5px 0px;
+}
+
+/************************************/
+/**********Side Navigation************/
+/***************************************/
+
+.side-nav-image-div
+{
+    
+    width: 30%;
+    margin: auto;
+    
+}
+
+.side-nav-image
+{
+    width: 100%;
+    margin: 40px 0px;
+}
+
+
+.side-nav-open
+{
+    
+    width: 240px;
+    height: 100%;
+
+    position:fixed;
+    top: 0px;
+    left: 0px;
+    overflow: hidden;
+
+    background-color: #ffffff;
+    transition: 0.3s;
+
+    z-index: 111111;
+    box-shadow: 0px 0.5px 5px rgb(136, 136, 136);
+}
+
+
+
+
+.side-nav-close
+{
+   
+    width: 0px;
+    height: 100%;
+
+    position:fixed;
+    top: 0px;
+    left: 0px;
+    background-color: #ffffff;
+    overflow: hidden;
+    transition: 0.3s;
+
+}
+
+
+
+
+.side-nav-item
+{
+    display: block;
+    text-decoration: none;
+    color: black;
+    padding: 10px 0px; 
+    transition: 0.5s;   
+}
+.side-nav-item:hover
+{
+    background-color:rgb(114, 201, 182) ;
+    color: white;
+}
+
+.side-nav-item-active
+{
+    border-left: 10px solid rgb(114, 201, 182);
+    background-color: rgba(114, 201, 182, 0.434);
+}
+
+.side-nav-icon
+{
+    margin-left: 10px;
+}
+
+.side-nav-text
+{
+    margin-left: 15px;
+}
+
+
+.side-nav .accordion-button
+{
+
+    text-decoration: none;
+    color: black;
+    padding: 10px 5px; 
+    transition: 0.2s;  
+}
+
+.side-nav .accordion-button:hover
+{  
+    border-left: 10px solid rgb(114, 201, 182);
+    background-color: rgba(114, 201, 182, 0.434); 
+}
+
+.side-nav .accordion-body
+{
+    padding: 0px;
+}
+.side-nav .accordion-item
+{
+    border: 0px;
+}
+
+
+
+/**************************************/
+/************Content******************/
+/***************************************/
+.content
+{
+    margin-top: 80px;
+    margin-left: 240px;
+    color: black;
+
+    transition: 0.3s;
+}
+
+.content-expand
+{
+    margin-top: 80px;
+    color: black;
+
+    transition: 0.3s;
+}
