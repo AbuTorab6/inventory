@@ -85,15 +85,21 @@ section
     width: 50px;
     height: 50px;
     border-radius: 50%;
+    object-fit: cover;
 }
 
+.drp-down
+{
+    position: relative;
+    display: inline-block;
+}
 
 .drp-down-content
 {
     width: 260px;
 
     position: absolute;
-    right: 20px;
+    right: 0px;
 
     background-color: #ffffff;
     padding: 20px;
@@ -101,7 +107,6 @@ section
     box-shadow:2px 2px 8px rgb(136, 136, 136);
 
     display: none;
-    transition:2s;
 }
 
 .drp-down:hover .drp-down-content
@@ -115,6 +120,7 @@ section
     height: 45px;
     border-radius: 50%;
     margin-left: 85px;
+    object-fit: cover;
 }
 
 .drp-down-content-info h6
@@ -127,6 +133,7 @@ section
     color: black;
     text-decoration: none;
     margin-bottom: 10px;
+    padding: 5px 0px;
 }
 .drp-down-item:hover
 {
@@ -134,7 +141,8 @@ section
     border-left: 10px solid rgb(114, 201, 182);
     background-color: rgba(114, 201, 182, 0.37);
     color: black;
-    padding: 5px 0px;
+    
+    transition: 0.3s;
 }
 
 /************************************/
@@ -270,4 +278,318 @@ section
     color: black;
 
     transition: 0.3s;
+}
+
+
+/**************************************/
+/*********Full Screen Loader***********/
+/***************************************/
+.full-screen
+{
+    
+    position: absolute;
+    top: 0px;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+
+    height: 100%;
+
+    display: block;
+    z-index: 5000000;
+    background-color: rgba(255, 255, 255, 0.927) !important;
+
+}
+
+
+.line .core::after
+{
+    content: "";
+    width: 800px;
+    height: 3px;
+    display: block;
+    background-color:rgb(114, 201, 182);
+
+    position: fixed;
+    animation: proma;
+    animation-iteration-count: infinite;
+    animation-duration: 2s;
+}
+
+.line .core::before
+{
+    content: "";
+    width: 800px;
+    height: 3px;
+    display: block;
+    background-color:rgb(114, 201, 182);
+
+    position: fixed;
+    animation: liza;
+    animation-iteration-count: infinite;
+
+    animation-duration: 2s;
+    animation-delay: 1s;
+}
+
+@keyframes proma {
+    0% {
+        left: -35%;
+        right: 100%;
+    }
+
+    60% {
+        left: 100%;
+        right: -90%;
+    }
+
+    100% {
+        left: 100%;
+        right: -90%;
+    }
+}
+
+@keyframes liza {
+    0% {
+        left: -200%;
+        right: 100%;
+    }
+
+    60% {
+        left: 107%;
+        right: -8%;
+    }
+
+    100% {
+        left: 107%;
+        right: -8%;
+    }
+}
+
+
+
+
+.visibility-none
+{
+    display: none;
+}
+
+.visibility-yes
+{
+    display: block;
+}
+
+
+
+/**************************************/
+/*********Registration ***********/
+/***************************************/
+.regi-section
+{
+    text-align: center;
+}
+.regi-section .form
+{
+    background-color: #ffffff;
+    width: 500px;
+    margin: auto;
+    margin-top: 100px;
+    padding: 30px 10px;
+    border-radius: 5px;
+    box-shadow: 5px 5px 10px rgb(198, 198, 198);
+
+    border-left: 5px solid rgb(114, 201, 182);
+    border-top: 5px solid rgb(114, 201, 182);
+}
+
+.regi-section h5
+{
+    margin-bottom: 20px;
+}
+
+.regi-section input
+{
+    width: 90%;
+    height: 35px;
+    border: 0.5px solid rgb(196, 194, 194);
+    border-radius: 5px;
+    margin-bottom: 20px;
+    border-radius: 2;
+    padding-left: 20px;
+    
+}
+
+
+
+.regi-section .next-btn
+{
+    width: 90%;
+    height: 35px;
+    margin: auto;
+    background-color:rgb(114, 201, 182);
+    border: 0px;
+    border-radius: 5px;
+    margin-bottom: 25px;
+
+    color: white;
+}
+
+
+.regi-section .forget-password-link
+{
+    display: block;
+    text-decoration: none;
+    color: black;
+    margin-bottom: 8px;
+}
+
+
+/**************************************/
+/*********Log IN***********/
+/***************************************/
+.login-section
+{
+    text-align: center;
+}
+.login-section .form
+{
+    background-color: #ffffff;
+    width: 500px;
+    margin: auto;
+    margin-top: 100px;
+    padding: 30px 10px;
+    border-radius: 5px;
+    box-shadow: 2px 2px 9px rgb(198, 198, 198);
+
+    border-left: 5px solid rgb(114, 201, 182);
+    border-top: 5px solid rgb(114, 201, 182);
+}
+
+
+.login-section h5
+{
+    margin-bottom: 20px;
+}
+
+.login-section input
+{
+    width: 90%;
+    height: 35px;
+    border: 0.5px solid rgb(196, 194, 194);
+    border-radius: 5px;
+    margin-bottom: 20px;
+    border-radius: 2;
+    padding-left: 20px;
+    
+}
+
+
+
+.login-section .next-btn
+{
+    width: 90%;
+    height: 35px;
+    margin: auto;
+    background-color:rgb(114, 201, 182);
+    border: 0px;
+    border-radius: 5px;
+    margin-bottom: 25px;
+
+    color: white;
+}
+
+
+.login-section .forget-password-link
+{
+    display: block;
+    text-decoration: none;
+    color: black;
+    margin-bottom: 8px;
+}
+
+.login-section .sign-up-link
+{
+    display: block;
+    text-decoration: none;
+    color: black;
+    margin-bottom: 8px;
+}
+
+
+/**************************************/
+/**************Profile***************/
+/***************************************/
+.profile-section
+{
+    padding: 20px;
+}
+
+.profile-section .form
+{
+    background-color: #ffffff;
+    padding: 30px 10px;
+    border-radius: 5px;
+    box-shadow: 2px 2px 9px rgb(198, 198, 198); 
+    border-left: 5px solid rgb(114, 201, 182);
+    border-top: 5px solid rgb(114, 201, 182);
+}
+
+.profile-form-grid
+{
+    display: grid !important;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 20px;
+
+    padding: 20px;
+    margin-top: 30px;
+}
+
+.profile-form-grid input
+{
+    display: block;
+    width: 90%;
+    height: 30px;
+    border: 0.5px solid rgb(196, 194, 194);
+    border-radius: 5px;
+    margin-bottom: 20px;
+    padding-left: 20px;
+}
+
+.profile-section .profile-update-btn
+{
+
+    height: 35px;
+    background-color:rgb(114, 201, 182);
+    border: 0px;
+    border-radius: 5px;
+    padding: 0px 20px;
+    width: 40%;
+    margin: auto;
+    display: block;
+
+    color: white;
+}
+
+.preview-profile-pic
+{
+    width: 150px;
+    height: 150px;
+
+    border-radius: 50%;
+    margin: auto;
+    margin-bottom: 5px;
+
+    
+    
+}
+
+.preview-profile-pic-img
+{
+    width: 150px;
+    height: 150px;
+
+    border-radius: 50%;
+    border:5px solid #00A884;
+
+    object-fit: cover;  /*--------------->important*/
 }

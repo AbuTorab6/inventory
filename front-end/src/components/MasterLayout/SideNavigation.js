@@ -6,6 +6,8 @@ import {Navbar,Nav,Container} from 'react-bootstrap'
 import Accordion from 'react-bootstrap/Accordion';
 import {NavLink} from 'react-router-dom'
 
+
+// react icon start
 import { AiOutlineMenuUnfold,AiOutlineUser,AiOutlineLogout,AiOutlineEdit,AiOutlineCheckCircle } from "react-icons/ai";
 import { RiDashboardLine } from "react-icons/ri";
 import { BsListNested,BsHourglass } from "react-icons/bs";
@@ -13,6 +15,7 @@ import { MdOutlineCancelPresentation } from "react-icons/md";
 import {AiOutlineBank, AiOutlineMenu} from 'react-icons/ai';
 import {BsBagPlus, BsBagX, BsBox, BsCartPlus, BsCircle, BsGraphUp, BsPeople} from 'react-icons/bs';
 import { TbTruckDelivery } from "react-icons/tb";
+// react icon end
 
 
 import myPic from '../../asset/image/jubo.jpg'
@@ -40,7 +43,6 @@ const SideNavigation = (props) =>
 
             navLogo.classList.add('nav-logo-close')
             navLogo.classList.remove('nav-logo-open')
-
         }
         else
         {
@@ -52,14 +54,11 @@ const SideNavigation = (props) =>
 
             navLogo.classList.add('nav-logo-open')
             navLogo.classList.remove('nav-logo-close')
-
-
         }
     }
 
 
 // ***********subNavigation Start****************
-
     var sidebarItems = [
         {
             title:"Dashboard",
@@ -276,6 +275,12 @@ const SideNavigation = (props) =>
 // ***********subNavigation End****************
     
 
+    var logOutFunc = ()=>
+    {
+        localStorage.clear();
+        window.location.href='/login'
+    }
+
 
 
     return (
@@ -287,19 +292,19 @@ const SideNavigation = (props) =>
                             </Navbar.Brand>
                             
                             <div className='drp-down'>
-                                <img className='drp-down-img' src={myPic} />
+                                <img className='drp-down-img' src={JSON.parse(localStorage.getItem('userDetail')).photo} />
 
                                 <div className='drp-down-content'>
                                     <div className='drp-down-content-info'>
-                                        <img className='drp-down-content-img' src={myPic}  />
-                                        <h6>Abu Totab</h6>
+                                        <img className='drp-down-content-img' src={JSON.parse(localStorage.getItem('userDetail')).photo}  />
+                                        <h6>{JSON.parse(localStorage.getItem('userDetail')).firstName+" "+JSON.parse(localStorage.getItem('userDetail')).lastName}</h6>
                                         <hr/>
                                     </div>
                                     <NavLink to='/profile' className='drp-down-item'>
                                         <span><AiOutlineUser/></span> <span>Profile</span>
                                     </NavLink>
                                     {/* we can not add "onClick" event inside the "Navlink" tag. Thats why we have to use "a" tag instead of "NavLink" tag */ }
-                                    <a  className='drp-down-item'> 
+                                    <a onClick={logOutFunc} className='drp-down-item'> 
                                         <span><AiOutlineLogout/></span> <span>Logout</span>
                                     </a>
                                 </div>
@@ -309,6 +314,7 @@ const SideNavigation = (props) =>
 
             {/* sideNavigation Start */}
             <div className='side-nav-open side-nav'>
+
                 <div className='side-nav-image-div'>
                     <img className='side-nav-image' src={sideNavLogo} />
                 </div>
@@ -357,6 +363,7 @@ const SideNavigation = (props) =>
                         )
                     }
                 </Accordion>
+                
             </div>
             {/* sideNavigation End */}
 
