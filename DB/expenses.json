@@ -1,0 +1,79 @@
+[{
+  "_id": {
+    "$oid": "632b18b99443a673d896f546"
+  },
+  "userEmail": "jubolraz727@gmail.com",
+  "expenseTypeId": {
+    "$oid": "632b1015d6c51233d877e518"
+  },
+  "amount": 2000,
+  "note": "april current bill",
+  "createdDate": {
+    "$date": "2022-09-21T13:59:16.020Z"
+  }
+},{
+  "_id": {
+    "$oid": "632b18f49bce6216fd3b8879"
+  },
+  "userEmail": "jubolraz727@gmail.com",
+  "expenseTypeId": {
+    "$oid": "632b1015d6c51233d877e518"
+  },
+  "amount": 2000,
+  "note": "june current bill",
+  "createdDate": {
+    "$date": "2022-09-21T13:59:36.699Z"
+  }
+},{
+  "_id": {
+    "$oid": "632b18f99bce6216fd3b887b"
+  },
+  "userEmail": "jubolraz727@gmail.com",
+  "expenseTypeId": {
+    "$oid": "632b1015d6c51233d877e518"
+  },
+  "amount": 2000,
+  "note": "july current bill",
+  "createdDate": {
+    "$date": "2022-09-21T13:59:36.699Z"
+  }
+},{
+  "_id": {
+    "$oid": "632b19229bce6216fd3b887d"
+  },
+  "userEmail": "jubolraz727@gmail.com",
+  "expenseTypeId": {
+    "$oid": "632b1033d6c51233d877e51a"
+  },
+  "amount": 2000,
+  "note": "trainee breakfast",
+  "createdDate": {
+    "$date": "2022-09-21T13:59:36.699Z"
+  }
+},{
+  "_id": {
+    "$oid": "632b19389bce6216fd3b887f"
+  },
+  "userEmail": "jubolraz727@gmail.com",
+  "expenseTypeId": {
+    "$oid": "632b1033d6c51233d877e51a"
+  },
+  "amount": 3000,
+  "note": "marketing lanch",
+  "createdDate": {
+    "$date": "2022-09-21T13:59:36.699Z"
+  }
+},{
+  "_id": {
+    "$oid": "632b193e9bce6216fd3b8881"
+  },
+  "userEmail": "jubolraz727@gmail.com",
+  "expenseTypeId": {
+    "$oid": "632b1033d6c51233d877e51a"
+  },
+  "amount": 3000,
+  "note": "marketing dinner",
+  "createdDate": {
+    "$date": "2022-09-21T13:59:36.699Z"
+  }
+}]

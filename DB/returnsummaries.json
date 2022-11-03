@@ -1,0 +1,18 @@
+[{
+  "_id": {
+    "$oid": "632ed424704db951fc11ebed"
+  },
+  "userEmail": "jubolraz727@gmail.com",
+  "customerId": {
+    "$oid": "632b0f67d6c51233d877e512"
+  },
+  "vatTax": 100,
+  "discount": 0,
+  "otherCost": 103,
+  "shippingCost": 200,
+  "grandTotal": 3422,
+  "note": "sell on 24-sep",
+  "createdDate": {
+    "$date": "2022-09-24T09:55:45.843Z"
+  }
+}]

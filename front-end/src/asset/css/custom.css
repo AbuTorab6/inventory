@@ -180,7 +180,7 @@ section
     position:fixed;
     top: 0px;
     left: 0px;
-    overflow: hidden;
+    overflow: scroll;
 
     background-color: #ffffff;
     transition: 0.3s;
@@ -287,6 +287,28 @@ section
     transition: 0.3s;
 }
 
+/**************************************/
+/************Scroll Bar******************/
+/***************************************/
+::-webkit-scrollbar {
+    width: 7px;
+    height: 7px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: #f1f1f1; 
+  }
+   
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: rgb(114, 201, 182) ;
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #555; 
+  }
 
 /**************************************/
 /*********Full Screen Loader***********/

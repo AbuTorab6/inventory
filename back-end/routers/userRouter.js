@@ -100,7 +100,7 @@ var updateUser = async (req,res)=>
             if(data.modifiedCount==0)
             {
                 res.status(203);
-                res.send("can not update profile")
+                res.send("you are trying to update your profile with the same information")
             }
             else
             {

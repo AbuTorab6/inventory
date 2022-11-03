@@ -148,7 +148,7 @@ const ExpenseTypeList = () =>
                 <div className='table-content'>
 
                     <div className='table-grid'>
-                        <h4>Brand List</h4>
+                        <h4>Expense Type List</h4>
                         <div>
                             <select onChange={productPerPage}>
                                 <option value="5">5 per page</option>

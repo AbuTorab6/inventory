@@ -6,6 +6,11 @@ import categoryState from '../stateSlice/categoryState'
 import supplierState from '../stateSlice/supplierState'
 import customerState from '../stateSlice/customerState'
 import expenseTypeState from '../stateSlice/expenseTypeState'
+import expenseState from '../stateSlice/expenseState'
+import productState from '../stateSlice/productState'
+import purchaseState from '../stateSlice/purchaseState'
+import sellState from '../stateSlice/sellState'
+import returnState from '../stateSlice/returnState'
 
 export default configureStore(
     {
@@ -15,7 +20,12 @@ export default configureStore(
             categoryState,
             supplierState,
             customerState,
-            expenseTypeState
+            expenseTypeState,
+            expenseState,
+            productState,
+            purchaseState,
+            sellState,
+            returnState
         }
     }
 )

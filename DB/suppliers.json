@@ -1,0 +1,37 @@
+[{
+  "_id": {
+    "$oid": "632b0ed6d6c51233d877e50a"
+  },
+  "userEmail": "jubolraz727@gmail.com",
+  "supplierName": "rabbil",
+  "address": "uttara",
+  "phone": "017556",
+  "email": "rabbil@gmail.com",
+  "createdDate": {
+    "$date": "2022-09-21T12:40:33.289Z"
+  }
+},{
+  "_id": {
+    "$oid": "632b0efed6c51233d877e50c"
+  },
+  "userEmail": "jubolraz727@gmail.com",
+  "supplierName": "tonmoy",
+  "address": "mirpur",
+  "phone": "01755634",
+  "email": "tonmoy@gmail.com",
+  "createdDate": {
+    "$date": "2022-09-21T12:40:33.289Z"
+  }
+},{
+  "_id": {
+    "$oid": "632b0f0fd6c51233d877e50e"
+  },
+  "userEmail": "jubolraz727@gmail.com",
+  "supplierName": "rafid",
+  "address": "gulshan",
+  "phone": "0175534634",
+  "email": "rafid@gmail.com",
+  "createdDate": {
+    "$date": "2022-09-21T12:40:33.289Z"
+  }
+}]

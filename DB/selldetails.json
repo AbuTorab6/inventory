@@ -1,0 +1,35 @@
+[{
+  "_id": {
+    "$oid": "632ec4d3a9f3573c11e8a1b8"
+  },
+  "userEmail": "jubolraz727@gmail.com",
+  "sellSummaryId": {
+    "$oid": "632ec4d3a9f3573c11e8a1b6"
+  },
+  "productId": {
+    "$oid": "632b1aa90ba32ba6e35a883f"
+  },
+  "quantity": 6,
+  "unitCost": 2100,
+  "total": 10000,
+  "createdDate": {
+    "$date": "2022-09-24T08:50:26.152Z"
+  }
+},{
+  "_id": {
+    "$oid": "632ec4d3a9f3573c11e8a1b9"
+  },
+  "userEmail": "jubolraz727@gmail.com",
+  "sellSummaryId": {
+    "$oid": "632ec4d3a9f3573c11e8a1b6"
+  },
+  "productId": {
+    "$oid": "632b1acb0ba32ba6e35a8841"
+  },
+  "quantity": 10,
+  "unitCost": 2000,
+  "total": 20000,
+  "createdDate": {
+    "$date": "2022-09-24T08:50:26.152Z"
+  }
+}]

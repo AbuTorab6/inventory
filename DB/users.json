@@ -1,0 +1,14 @@
+[{
+  "_id": {
+    "$oid": "632b0c29d6c51233d877e4fa"
+  },
+  "firstName": "abu",
+  "lastName": "torab",
+  "email": "jubolraz727@gmail.com",
+  "mobile": "01722",
+  "password": "12345678",
+  "photo": "hrbfhyureb",
+  "createdDate": {
+    "$date": "2022-09-21T12:40:33.122Z"
+  }
+}]

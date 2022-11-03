@@ -1,0 +1,35 @@
+[{
+  "_id": {
+    "$oid": "632df775a0e13c97cb19beab"
+  },
+  "userEmail": "jubolraz727@gmail.com",
+  "supplierId": {
+    "$oid": "632b0efed6c51233d877e50c"
+  },
+  "vatTax": 100,
+  "discount": 0,
+  "otherCost": 103,
+  "shippingCost": 200,
+  "grandTotal": 3422,
+  "note": "note",
+  "createdDate": {
+    "$date": "2022-09-23T18:13:09.417Z"
+  }
+},{
+  "_id": {
+    "$oid": "633081b2867fe324a8583e2c"
+  },
+  "userEmail": "juboraz727@gmail.com",
+  "supplierId": {
+    "$oid": "632b0ed6d6c51233d877e50a"
+  },
+  "vatTax": 200,
+  "discount": 0,
+  "otherCost": 203,
+  "shippingCost": 400,
+  "grandTotal": 3922,
+  "note": "purchase on 25-sep",
+  "createdDate": {
+    "$date": "2022-09-25T16:28:24.067Z"
+  }
+}]

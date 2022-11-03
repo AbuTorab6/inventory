@@ -1,0 +1,69 @@
+[{
+  "_id": {
+    "$oid": "632b1aa90ba32ba6e35a883f"
+  },
+  "userEmail": "jubolraz727@gmail.com",
+  "categoryId": {
+    "$oid": "632b0e2ed6c51233d877e504"
+  },
+  "brandId": {
+    "$oid": "632b0dffd6c51233d877e502"
+  },
+  "name": "formal pant",
+  "unit": "100",
+  "details": "from USA",
+  "createdDate": {
+    "$date": "2022-09-21T14:04:28.775Z"
+  }
+},{
+  "_id": {
+    "$oid": "632b1acb0ba32ba6e35a8841"
+  },
+  "userEmail": "jubolraz727@gmail.com",
+  "categoryId": {
+    "$oid": "632b0e2ed6c51233d877e504"
+  },
+  "brandId": {
+    "$oid": "632b0dffd6c51233d877e502"
+  },
+  "name": "panjabi",
+  "unit": "200",
+  "details": "from rajshahi",
+  "createdDate": {
+    "$date": "2022-09-21T14:04:28.775Z"
+  }
+},{
+  "_id": {
+    "$oid": "632b1b130ba32ba6e35a8843"
+  },
+  "userEmail": "jubolraz727@gmail.com",
+  "categoryId": {
+    "$oid": "632b0e37d6c51233d877e506"
+  },
+  "brandId": {
+    "$oid": "632b0df7d6c51233d877e500"
+  },
+  "name": "50`` 4k",
+  "unit": "50",
+  "details": "from banani",
+  "createdDate": {
+    "$date": "2022-09-21T14:04:28.775Z"
+  }
+},{
+  "_id": {
+    "$oid": "632b1b350ba32ba6e35a8845"
+  },
+  "userEmail": "jubolraz727@gmail.com",
+  "categoryId": {
+    "$oid": "632b0e37d6c51233d877e506"
+  },
+  "brandId": {
+    "$oid": "632b0df7d6c51233d877e500"
+  },
+  "name": "walton-45t",
+  "unit": "23",
+  "details": "40`` 4k",
+  "createdDate": {
+    "$date": "2022-09-21T14:04:28.775Z"
+  }
+}]

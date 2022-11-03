@@ -12,6 +12,11 @@ import CategoryListPage from '../pages/category/CategoryListPage';
 import SupplierListPage from '../pages/supplier/SupplierListPage';
 import CustomerListPage from '../pages/customer/CustomerListPage';
 import ExpenseTypeListPage from '../pages/expenseType/ExpenseTypeListPage';
+import ExpenseListPage from '../pages/expense/ExpenseListPage';
+import ProductListPage from '../pages/product/ProductListPage';
+import PurchaseListPage from '../pages/purchase/PurchaseListPage';
+import SellListPage from '../pages/sell/SellListPage';
+import ReturnListPage from '../pages/return/ReturnListPage';
 
 const MyRouter = () => 
 {
@@ -32,6 +37,11 @@ const MyRouter = () =>
                             <Route path='/supplierList' element={<SupplierListPage/>}/>
                             <Route path='/customerList' element={<CustomerListPage/>}/>
                             <Route path='/expenseTypeList' element={<ExpenseTypeListPage/>}/>
+                            <Route path='/expenseList' element={<ExpenseListPage/>}/>
+                            <Route path='/productList' element={<ProductListPage/>}/>
+                            <Route path='/purchaseList' element={<PurchaseListPage/>}/>
+                            <Route path='/sellList' element={<SellListPage/>}/>
+                            <Route path='/returnList' element={<ReturnListPage/>}/>
                         </Routes>
                     </BrowserRouter>
             </Fragment>
