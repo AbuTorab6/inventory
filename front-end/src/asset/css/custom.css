@@ -86,7 +86,13 @@ section
     height: 50px;
     border-radius: 50%;
     object-fit: cover;
+    border:1px solid white;
+    outline-width: 2px;
+    outline-style: solid;
+    outline-color: #00A884;
+    outline-offset: 1px;
 }
+
 
 .drp-down
 {
@@ -162,6 +168,7 @@ section
     width: 100%;
     margin: 40px 0px;
 }
+
 
 
 .side-nav-open
@@ -265,7 +272,7 @@ section
 /***************************************/
 .content
 {
-    margin-top: 80px;
+    margin-top: 70px;
     margin-left: 240px;
     color: black;
 
@@ -274,7 +281,7 @@ section
 
 .content-expand
 {
-    margin-top: 80px;
+    margin-top: 70px;
     color: black;
 
     transition: 0.3s;
@@ -522,6 +529,7 @@ section
 .profile-section
 {
     padding: 20px;
+    margin-top: 50px;
 }
 
 .profile-section .form
@@ -532,6 +540,8 @@ section
     box-shadow: 2px 2px 9px rgb(198, 198, 198); 
     border-left: 5px solid rgb(114, 201, 182);
     border-top: 5px solid rgb(114, 201, 182);
+    border-top-left-radius: 50px;
+    border-bottom-right-radius: 50px;
 }
 
 .profile-form-grid
@@ -592,4 +602,109 @@ section
     border:5px solid #00A884;
 
     object-fit: cover;  /*--------------->important*/
+}
+
+
+
+
+/**************************************/
+/**************Brand List***************/
+/***************************************/
+
+.table-content
+{
+    background-color: white;
+    width: 94%;
+    margin: auto;
+    padding: 40px 40px;
+
+    border-radius: 10px;
+}
+
+.table-grid
+{
+    display: grid;
+    grid-template-columns: auto auto auto;
+
+    justify-content:baseline;
+
+    margin-bottom: 30px;
+}
+
+.table-grid select
+{
+    background-color: transparent;
+
+    padding: 7px 40px;
+    border: 1px solid rgba(128, 128, 128, 0.458);
+    border-radius: 10px;
+}
+
+.table-grid .search input
+{
+    background-color: transparent;
+
+    padding: 6px 40px;
+    border: 1px solid rgba(128, 128, 128, 0.458);
+    border-radius: 10px;
+}
+
+.table-content .my-table
+{
+    height: 360px;
+    overflow: scroll;
+}
+
+td
+{
+    padding-bottom: 20px !important;
+}
+
+.table-edit-btn
+{
+    background-color: transparent;
+    border: 1px solid rgba(128, 128, 128, 0.247);
+    padding: 5px 10px;
+    border-radius: 5px;
+    color: #00A884;
+}
+
+
+/* pagination design  */
+nav
+{
+    padding-top: 40px;
+}
+
+.pagination
+{
+    --bs-pagination-active-bg:#00A884;
+    --bs-pagination-active-border-color:#00A884;
+}
+
+.page-link
+{
+    display: inline-block;
+    width: 40px !important;
+    height: 40px!important;
+    border-radius: 50% !important;
+    margin-left:10px !important;
+    line-height: 25px;
+    text-align: center;
+}
+
+
+
+/**************************************/
+/************Supplier List*************/
+/***************************************/
+
+
+.table-eye-btn
+{
+    background-color: transparent;
+    border: 1px solid rgba(128, 128, 128, 0.247);
+    padding: 5px 10px;
+    border-radius: 5px;
+    color: #00A884;
 }

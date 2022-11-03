@@ -7,6 +7,11 @@ import RegistrationPage from '../pages/registration/RegistrationPage';
 import LoginPage from '../pages/login/LoginPage';
 
 import ProfilePage from '../pages/profile/ProfilePage';
+import BrandListPage from '../pages/brand/BrandListPage';
+import CategoryListPage from '../pages/category/CategoryListPage';
+import SupplierListPage from '../pages/supplier/SupplierListPage';
+import CustomerListPage from '../pages/customer/CustomerListPage';
+import ExpenseTypeListPage from '../pages/expenseType/ExpenseTypeListPage';
 
 const MyRouter = () => 
 {
@@ -22,6 +27,11 @@ const MyRouter = () =>
                             <Route path='/login' element={<LoginPage/>}/>
                             <Route path='/registration' element={<RegistrationPage/>}/>
                             <Route path='/profile' element={<ProfilePage/>}/>
+                            <Route path='/brandList' element={<BrandListPage/>}/>
+                            <Route path='/categoryList' element={<CategoryListPage/>}/>
+                            <Route path='/supplierList' element={<SupplierListPage/>}/>
+                            <Route path='/customerList' element={<CustomerListPage/>}/>
+                            <Route path='/expenseTypeList' element={<ExpenseTypeListPage/>}/>
                         </Routes>
                     </BrowserRouter>
             </Fragment>

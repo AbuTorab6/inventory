@@ -52,7 +52,9 @@ var userRegistration = (firstName,lastName,email,mobile,password,photo)=>
     (
         (err)=>
         {
+            store.dispatch(hideLoader())
             cogoToast.error("Something is wrong:"+err.message);
+            
             return false;
         }
     )
@@ -91,7 +93,9 @@ var userLogin = (email,password)=>
     (
         (err)=>
         {
+            store.dispatch(hideLoader())
             cogoToast.error("Something is wrong:"+err.message);
+            
             return false;
         }
     )
@@ -139,7 +143,9 @@ var userProfileDetail = ()=>
     (
         (err)=>
         {
+            store.dispatch(hideLoader())
             cogoToast.error("Something is wrong:"+err.message);
+            
             return false;
         }
     )
@@ -186,7 +192,9 @@ var updateUserProfile = (firstName,lastName,mobile,password,photo)=>
     (
         (err)=>
         {
+            store.dispatch(hideLoader())
             cogoToast.error("Something is wrong:"+err.message);
+            
             return false;
         }
     )
