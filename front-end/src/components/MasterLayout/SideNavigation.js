@@ -265,9 +265,12 @@ const SideNavigation = (props) =>
                 );
             }   
         );
+        console.log("/"+window.location.pathname.split("/")[1])
+        console.log(window.location.pathname.split("/"))
+        console.log(window.location.pathname)
        
         return urlList.findIndex((items) =>
-            items.includes(window.location.pathname)
+            items.includes("/"+window.location.pathname.split("/")[1])
         );
  
     };

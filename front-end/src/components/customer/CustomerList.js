@@ -11,6 +11,7 @@ import { setAllCustomerFunc,setTotalFunc } from '../../redux/stateSlice/customer
 import {useDispatch,useSelector} from 'react-redux';
 
 import ReactPaginate from 'react-paginate';
+import { Link } from 'react-router-dom';
 
 
 
@@ -122,7 +123,6 @@ const CustomerList = () =>
     let total = useSelector((state)=>state.customerState.total);
 
     var allCustomer = useSelector((state)=>state.customerState.allCustomer);
-    console.log("allcustomer",allCustomer)
     if(allCustomer.length===0)
     {
         var allCustomerArr = <h1>No data found</h1>
@@ -135,10 +135,13 @@ const CustomerList = () =>
                 return(
                     <tr>
                         <td> {p2} </td>
-                        <td>{p1.supplierName}</td>
+                        <td>{p1.customerName}</td>
                         <td>{p1.phone}</td>
                         <td>{p1.email}</td>
-                        <td> <button className='table-edit-btn'><span ><AiOutlineEdit/></span></button> <button className='table-eye-btn'><span ><AiOutlineEye/></span></button></td>
+                        <td> 
+                            <button  className='table-edit-btn me-2'><Link className='table-edit-btn-link' to={'/customerCreateUpdate/'+p1._id} ><span ><AiOutlineEdit/></span></Link></button> 
+                            <button className='table-eye-btn'><span ><AiOutlineEye/></span></button>
+                        </td>
                     </tr>
                 )
             }

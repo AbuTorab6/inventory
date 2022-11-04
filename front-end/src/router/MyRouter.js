@@ -18,6 +18,8 @@ import PurchaseListPage from '../pages/purchase/PurchaseListPage';
 import SellListPage from '../pages/sell/SellListPage';
 import ReturnListPage from '../pages/return/ReturnListPage';
 
+import CustomerCreateUpdatePage from '../pages/customer/CustomerCreateUpdatePage';
+
 const MyRouter = () => 
 {
 
@@ -32,6 +34,7 @@ const MyRouter = () =>
                             <Route path='/login' element={<LoginPage/>}/>
                             <Route path='/registration' element={<RegistrationPage/>}/>
                             <Route path='/profile' element={<ProfilePage/>}/>
+
                             <Route path='/brandList' element={<BrandListPage/>}/>
                             <Route path='/categoryList' element={<CategoryListPage/>}/>
                             <Route path='/supplierList' element={<SupplierListPage/>}/>
@@ -42,6 +45,10 @@ const MyRouter = () =>
                             <Route path='/purchaseList' element={<PurchaseListPage/>}/>
                             <Route path='/sellList' element={<SellListPage/>}/>
                             <Route path='/returnList' element={<ReturnListPage/>}/>
+
+                            <Route path='/customerCreateUpdate' element={<CustomerCreateUpdatePage/>}/>
+                            <Route path='/customerCreateUpdate/:id' element={<CustomerCreateUpdatePage/>}/>
+
                         </Routes>
                     </BrowserRouter>
             </Fragment>

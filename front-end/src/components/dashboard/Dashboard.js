@@ -9,7 +9,7 @@ const Dashboard = () => {
             <section>
                 <h1>My name is juboraz  </h1>
 
-                <Accordion defaultActiveKey="2">
+                <Accordion defaultActiveKey="1">
                     <Accordion.Item eventKey="0">
                         <Accordion.Header>Accordion Item #1</Accordion.Header>
                         <Accordion.Body>

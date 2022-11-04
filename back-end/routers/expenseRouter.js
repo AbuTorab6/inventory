@@ -66,7 +66,7 @@ var updateExpense = async (req,res)=>
         try{
             var dataFromToken = jwt.verify(tokenFromPostman,process.env.KEY);
 
-            var data = await expenseModel.updateOne({_id:myId,userEmail:dataFromToken.email},{$set:{amount:dataFromPostman.amount,note:dataFromPostman.note}})
+            var data = await expenseModel.updateOne({_id:myId,userEmail:dataFromToken.email},{$set:{amount:dataFromPostman.amount,note:dataFromPostman.note,expenseTypeId:dataFromPostman.expenseTypeId}})
             if(data.modifiedCount==0)
             {
                 res.status(203);

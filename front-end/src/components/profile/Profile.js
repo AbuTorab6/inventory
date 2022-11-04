@@ -115,6 +115,7 @@ const Profile = () =>
     return (
         <Fragment>
             <div className='profile-section'>
+                
                 <div className='preview-profile-pic'>
                     <img className='preview-profile-pic-img' src={JSON.parse(localStorage.getItem('userDetail')).photo} />
                 </div>

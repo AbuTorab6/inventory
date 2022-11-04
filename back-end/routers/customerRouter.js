@@ -73,7 +73,7 @@ var updateCustomer = async (req,res)=>
             if(data.modifiedCount==0)
             {
                 res.status(203);
-                res.send("can not update customer name")
+                res.send("you are trying to update the customer with the same information")
             }
             else
             {

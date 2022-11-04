@@ -69,7 +69,7 @@ var updateProduct = async (req,res)=>
         try
         {
             var dataFromToken = jwt.verify(tokenFromPostman,process.env.KEY);
-            var data = await productModel.updateOne({_id:myId,userEmail:dataFromToken.email},{$set:{name:dataFromPostman.name,unit:dataFromPostman.unit,details:dataFromPostman.details}})
+            var data = await productModel.updateOne({_id:myId,userEmail:dataFromToken.email},{$set:{name:dataFromPostman.name,unit:dataFromPostman.unit,details:dataFromPostman.details,categoryId:dataFromPostman.categoryId,brandId:dataFromPostman.brandId}})
             if(data.modifiedCount==0)
             {
                 res.status(203);
