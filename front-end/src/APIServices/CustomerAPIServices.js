@@ -204,6 +204,47 @@ var updateCustomer = (customerName,customerMobileNo,customerEmail,customerAddres
 
 
 
+var deleteCustomer = (id)=>
+{
+    store.dispatch(showLoader())
+    return axios.get(baseURL+'/deleteCustomer/'+id,axiosHeader).then
+    (
+        (res)=>
+        {
+            store.dispatch(hideLoader())
+            if(res.status===200)
+            {
+                return true
+            }
+            else if(res.status===206)
+            {
+                cogoToast.warn(res.data);
+                return false
+            }
+            else if(res.status===203)
+            {
+                cogoToast.warn(res.data);
+                return false
+            }
+            else
+            {
+                cogoToast.warn("can not update customer");
+                return false
+            }
+        }
+    ).catch
+    (
+        (err)=>
+        {
+            store.dispatch(hideLoader())
+            cogoToast.error("Something is wrong:"+err.message);
+            return false;
+        }
+    )
+}
 
 
-export {customerList,createCustomer,customerDetailById,updateCustomer};
+
+
+
+export {customerList,createCustomer,customerDetailById,updateCustomer,deleteCustomer};

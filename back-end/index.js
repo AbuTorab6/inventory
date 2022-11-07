@@ -83,10 +83,10 @@ app.use('*',(req,res)=>{
 
 var URI = 'mongodb+srv://<username>:<password>@cluster0.rl4dqmo.mongodb.net/InventoryDB?retryWrites=true&w=majority';
 //mongodb://localhost:27017/InventoryDB
-//mongodb+srv://<username>:<password>@cluster0.rl4dqmo.mongodb.net/InventoryDB?retryWrites=true&w=majority
+
 var OPTION = {
-    user:'abuTorab',
-    pass:'gdfg87usgfviuywij',
+    user:'ononna',
+    pass:'hiiYouWillNeverGetMyDBspassword',
     autoIndex:true
 }
 

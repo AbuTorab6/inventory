@@ -2,16 +2,18 @@ import React,{Fragment,useEffect,useState} from 'react';
 
 
 import Table from 'react-bootstrap/Table';
-import { AiOutlineEdit,AiOutlineEye } from "react-icons/ai";
+import { AiOutlineEdit,AiOutlineEye,AiOutlineDelete } from "react-icons/ai";
 
-import { customerList } from '../../APIServices/CustomerAPIServices';
+import { customerList,deleteCustomer } from '../../APIServices/CustomerAPIServices';
 import { setAllCustomerFunc,setTotalFunc } from '../../redux/stateSlice/customerState';
+import Swal from 'sweetalert2'
 
 
 import {useDispatch,useSelector} from 'react-redux';
 
 import ReactPaginate from 'react-paginate';
 import { Link } from 'react-router-dom';
+import cogoToast from 'cogo-toast';
 
 
 
@@ -25,6 +27,56 @@ const CustomerList = () =>
 
 
 
+
+
+    // for delete customer
+    var deleteCustomerFunc = (p2)=>
+    {
+        Swal.fire
+        (
+            {
+                title: 'Are you sure?',
+                text: "You won't be able to revert this!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, delete it!'
+            }
+        ).then
+        (
+            (result)=> 
+            {
+                if (result.isConfirmed) 
+                {
+                    deleteCustomer(p2).then
+                    (
+                        (res)=>
+                        {
+                            if(res===true)
+                            {
+                                cogoToast.success("customer deleted successfully")
+                                customerList(1,perPage,searchKey).then //after delete it will refresh page 
+                                (
+                                    (res)=>
+                                    {
+                                        if(res!==false)
+                                        {
+                                            dispatch(setAllCustomerFunc(res[0].allData));
+                                            dispatch(setTotalFunc(res[0].totalData[0].total));
+                                        }
+                                    }
+                                )
+                            }
+                        }
+                    )
+                }
+          }
+        )
+    }
+
+
+    
     useEffect(()=>{
 
         customerList(1,perPage,searchKey).then
@@ -40,6 +92,10 @@ const CustomerList = () =>
         )
 
     },[])
+
+
+
+
 
 
     //for pagination
@@ -134,13 +190,13 @@ const CustomerList = () =>
             {
                 return(
                     <tr>
-                        <td> {p2} </td>
+                        <td> {p2+1} </td>
                         <td>{p1.customerName}</td>
                         <td>{p1.phone}</td>
                         <td>{p1.email}</td>
                         <td> 
                             <button  className='table-edit-btn me-2'><Link className='table-edit-btn-link' to={'/customerCreateUpdate/'+p1._id} ><span ><AiOutlineEdit/></span></Link></button> 
-                            <button className='table-eye-btn'><span ><AiOutlineEye/></span></button>
+                            <button onClick={deleteCustomerFunc.bind(this,p1._id)} className='table-eye-btn'><span ><AiOutlineDelete/></span></button>
                         </td>
                     </tr>
                 )
