@@ -9,6 +9,7 @@ import { setAllExpenseTypeFunc,setTotalFunc } from '../../redux/stateSlice/expen
 import {useDispatch,useSelector} from 'react-redux';
 
 import ReactPaginate from 'react-paginate';
+import { Link } from 'react-router-dom';
 
 const ExpenseTypeList = () => 
 {
@@ -133,7 +134,10 @@ const ExpenseTypeList = () =>
                         <td> {p2} </td>
                         <td>{p1.name}</td>
                         <td>{p1.createdDate}</td>
-                        <td> <button className='table-edit-btn'><span ><AiOutlineEdit/></span></button></td>
+                        <td> 
+                        <button  className='table-edit-btn me-2'><Link className='table-edit-btn-link' to={'/expenseTypeCreateUpdate/'+p1._id} ><span ><AiOutlineEdit/></span></Link></button> 
+
+                        </td>
                     </tr>
                 )
             }

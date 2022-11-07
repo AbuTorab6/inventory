@@ -220,14 +220,13 @@ section
 }
 .side-nav-item:hover
 {
-    background-color:rgb(114, 201, 182) ;
-    color: white;
+    color: #00A884;
 }
 
 .side-nav-item-active
 {
-    border-left: 10px solid rgb(114, 201, 182);
-    background-color: rgba(114, 201, 182, 0.434);
+    border-right: 7px solid rgb(114, 201, 182);
+    color: #00A884;
 }
 
 .side-nav-icon
@@ -727,7 +726,7 @@ nav
 /***************************************/
 
 
-.table-eye-btn
+.table-delete-btn
 {
     background-color: transparent;
     border: 1px solid rgba(128, 128, 128, 0.247);
@@ -801,6 +800,150 @@ nav
 }
 
 .customer-save-btn
+{
+
+    height: 35px;
+    background-color:#00A884;
+    border: 0px;
+    border-radius: 5px;
+    padding: 0px 20px;
+    margin-left: 20px;
+ 
+    color: white;
+    font-weight: 700;
+}
+
+
+
+/**************************************/
+/*********Supplier Create Update**********/
+/***************************************/
+.supplier-create-update-section
+{
+    padding: 20px;
+    margin-top: 50px;
+}
+
+.supplier-create-update-section h4
+{
+    padding-left: 20px;
+}
+
+.supplier-create-update-section .form
+{
+    background-color: #ffffff;
+    padding: 30px 10px;
+    border-radius: 20px;
+    box-shadow: 2px 2px 9px rgb(198, 198, 198); 
+    border-left: 5px solid rgb(114, 201, 182);
+    border-top: 5px solid rgb(114, 201, 182);
+   
+}
+
+.supplier-form-grid
+{
+    display: grid !important;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 20px;
+
+    padding: 20px;
+    margin-top: 30px;
+}
+
+.supplier-form-grid input
+{
+    display: block;
+    width: 90%;
+    height: 30px;
+    border: 0.5px solid rgb(196, 194, 194);
+    border-radius: 5px;
+    margin-bottom: 20px;
+    padding-left: 20px;
+}
+
+.supplier-textarea
+{
+    padding-left: 20px;
+}
+
+.supplier-create-update-section textarea
+{
+    display: block;
+    width: 96%;
+    height: 100px;
+    border: 0.5px solid rgb(196, 194, 194);
+    border-radius: 5px;
+    margin-bottom: 20px;
+    padding-left: 20px;
+}
+
+.supplier-save-btn
+{
+
+    height: 35px;
+    background-color:#00A884;
+    border: 0px;
+    border-radius: 5px;
+    padding: 0px 20px;
+    margin-left: 20px;
+ 
+    color: white;
+    font-weight: 700;
+}
+
+
+
+
+/**************************************/
+/*********expenseType Create Update**********/
+/***************************************/
+.expenseType-create-update-section
+{
+    padding: 20px;
+    margin-top: 50px;
+}
+
+.expenseType-create-update-section h4
+{
+    padding-left: 20px;
+}
+
+.expenseType-create-update-section .form
+{
+    background-color: #ffffff;
+    padding: 30px 10px;
+    border-radius: 20px;
+    box-shadow: 2px 2px 9px rgb(198, 198, 198); 
+    border-left: 5px solid rgb(114, 201, 182);
+    border-top: 5px solid rgb(114, 201, 182);
+   
+}
+
+.expenseType-form-grid
+{
+    display: grid !important;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 20px;
+
+    padding: 20px;
+    margin-top: 30px;
+}
+
+.expenseType-form-grid input
+{
+    display: block;
+    width: 90%;
+    height: 30px;
+    border: 0.5px solid rgb(196, 194, 194);
+    border-radius: 5px;
+    margin-bottom: 20px;
+    padding-left: 20px;
+}
+
+
+
+
+.expenseType-save-btn
 {
 
     height: 35px;

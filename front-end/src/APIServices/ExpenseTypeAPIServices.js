@@ -61,4 +61,138 @@ var expenseTypeList = (pageNo,perPage,searchKey)=>
 }
 
 
-export {expenseTypeList};
+var createExpenseType = (name)=>
+{
+    store.dispatch(showLoader())
+
+    var data = {
+        name:name
+    }
+
+    return axios.post(baseURL+'/createExpenseType',data,axiosHeader).then
+    (
+        (res)=>
+        {
+            store.dispatch(hideLoader())
+            if(res.status===200)
+            {
+                return true
+            }
+            else if(res.status===206)
+            {
+                cogoToast.warn(res.data);
+                return false
+            }
+            else if(res.status===203)
+            {
+                cogoToast.warn(res.data);
+                return false
+            }
+            else
+            {
+                cogoToast.warn("can not create the expense type.");
+                return false
+            }
+
+        }
+    ).catch
+    (
+        (err)=>
+        {
+            store.dispatch(hideLoader())
+            cogoToast.error("Something is wrong:"+err.message);
+            return false;
+        }
+    )
+
+}
+
+
+
+
+var expenseTypeDetailById = (id)=>
+{
+    store.dispatch(showLoader())
+    return axios.get(baseURL+'/expenseTypeDetailById/'+id,axiosHeader).then
+    (
+        (res)=>
+        {
+            store.dispatch(hideLoader())
+            if(res.status===200)
+            {
+                return res.data;
+            }
+            else if(res.status===206)
+            {
+                cogoToast.warn(res.data);
+                return false
+            }
+            else if(res.status===203)
+            {
+                cogoToast.warn(res.data);
+                return false
+            }
+            else
+            {
+                cogoToast.warn("can not show the expense type detail");
+                return false
+            }
+        }
+    ).catch
+    (
+        (err)=>
+        {
+            store.dispatch(hideLoader())
+            cogoToast.error("Something is wrong:"+err.message);
+            return false;
+        }
+    )
+}
+
+
+var updateExpenseType = (name,id)=>
+{
+    store.dispatch(showLoader())
+    var data = {
+        name:name
+    }
+
+    return axios.post(baseURL+'/updateExpenseType/'+id,data,axiosHeader).then
+    (
+        (res)=>
+        {
+            store.dispatch(hideLoader())
+            if(res.status===200)
+            {
+                return true
+            }
+            else if(res.status===206)
+            {
+                cogoToast.warn(res.data);
+                return false
+            }
+            else if(res.status===203)
+            {
+                cogoToast.warn(res.data);
+                return false
+            }
+            else
+            {
+                cogoToast.warn("can not update expense type");
+                return false
+            }
+        }
+    ).catch
+    (
+        (err)=>
+        {
+            store.dispatch(hideLoader())
+            cogoToast.error("Something is wrong:"+err.message);
+            return false;
+        }
+    )
+}
+
+
+
+export {expenseTypeList,createExpenseType,expenseTypeDetailById,updateExpenseType};

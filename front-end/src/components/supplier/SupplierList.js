@@ -2,14 +2,19 @@ import React,{Fragment,useEffect,useState} from 'react';
 
 
 import Table from 'react-bootstrap/Table';
-import { AiOutlineEdit,AiOutlineEye } from "react-icons/ai";
+import { AiOutlineEdit,AiOutlineEye,AiOutlineDelete } from "react-icons/ai";
 
-import { supplierList } from '../../APIServices/SupplierAPIServices';
+import { supplierList,deleteSupplier } from '../../APIServices/SupplierAPIServices';
 import { setAllSupplierFunc,setTotalFunc } from '../../redux/stateSlice/supplierState';
+import Swal from 'sweetalert2'
+import cogoToast from 'cogo-toast';
+
 
 import {useDispatch,useSelector} from 'react-redux';
 
 import ReactPaginate from 'react-paginate';
+import { Link } from 'react-router-dom';
+
 
 const SupplierList = () => 
 {
@@ -19,6 +24,53 @@ const SupplierList = () =>
 
     const[searchKey,setSearchKey]=useState(0)
     const[perPage,setPerPage]=useState(5);
+
+
+    var deleteSupplierFunc = (p2)=>
+    {
+        Swal.fire
+        (
+            {
+                title: 'Are you sure?',
+                text: "You won't be able to revert this!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, delete it!'
+            }
+        ).then
+        (
+            (result)=> 
+            {
+                if (result.isConfirmed) 
+                {
+                    deleteSupplier(p2).then
+                    (
+                        (res)=>
+                        {
+                            if(res===true)
+                            {
+                                cogoToast.success("supplier deleted successfully")
+                                supplierList(1,perPage,searchKey).then
+                                (
+                                    (res)=>
+                                    {
+                                        if(res!==false)
+                                        {
+
+                                            dispatch(setAllSupplierFunc(res[0].allData));
+                                            dispatch(setTotalFunc(res[0].totalData[0].total))
+                                        }
+                                    }
+                                )
+                            }
+                        }
+                    )
+                }
+          }
+        )
+    }
 
 
 
@@ -131,11 +183,14 @@ const SupplierList = () =>
             {
                 return(
                     <tr>
-                        <td> {p2} </td>
+                        <td> {p2+1} </td>
                         <td>{p1.supplierName}</td>
                         <td>{p1.phone}</td>
                         <td>{p1.email}</td>
-                        <td> <button className='table-edit-btn'><span ><AiOutlineEdit/></span></button> <button className='table-eye-btn'><span ><AiOutlineEye/></span></button></td>
+                        <td> 
+                            <button  className='table-edit-btn me-2'><Link className='table-edit-btn-link' to={'/supplierCreateUpdate/'+p1._id} ><span ><AiOutlineEdit/></span></Link></button> 
+                            <button onClick={deleteSupplierFunc.bind(this,p1._id)}   className='table-delete-btn'><span ><AiOutlineDelete/></span></button>
+                        </td>
                     </tr>
                 )
             }

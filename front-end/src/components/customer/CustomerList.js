@@ -196,7 +196,7 @@ const CustomerList = () =>
                         <td>{p1.email}</td>
                         <td> 
                             <button  className='table-edit-btn me-2'><Link className='table-edit-btn-link' to={'/customerCreateUpdate/'+p1._id} ><span ><AiOutlineEdit/></span></Link></button> 
-                            <button onClick={deleteCustomerFunc.bind(this,p1._id)} className='table-eye-btn'><span ><AiOutlineDelete/></span></button>
+                            <button onClick={deleteCustomerFunc.bind(this,p1._id)} className='table-delete-btn'><span ><AiOutlineDelete/></span></button>
                         </td>
                     </tr>
                 )

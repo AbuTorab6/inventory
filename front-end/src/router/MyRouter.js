@@ -19,6 +19,8 @@ import SellListPage from '../pages/sell/SellListPage';
 import ReturnListPage from '../pages/return/ReturnListPage';
 
 import CustomerCreateUpdatePage from '../pages/customer/CustomerCreateUpdatePage';
+import SupplierCreateUpdatePage from '../pages/supplier/SupplierCreateUpdatePage';
+import ExpenseTypeCreateUpdatePage from '../pages/expenseType/ExpenseTypeCreateUpdatePage';
 
 const MyRouter = () => 
 {
@@ -48,6 +50,12 @@ const MyRouter = () =>
 
                             <Route path='/customerCreateUpdate' element={<CustomerCreateUpdatePage/>}/>
                             <Route path='/customerCreateUpdate/:id' element={<CustomerCreateUpdatePage/>}/>
+
+                            <Route path='/supplierCreateUpdate' element={<SupplierCreateUpdatePage/>}/>
+                            <Route path='/supplierCreateUpdate/:id' element={<SupplierCreateUpdatePage/>}/>
+
+                            <Route path='/expenseTypeCreateUpdate' element={<ExpenseTypeCreateUpdatePage/>}/>
+                            <Route path='/expenseTypeCreateUpdate/:id' element={<ExpenseTypeCreateUpdatePage/>}/>
 
                         </Routes>
                     </BrowserRouter>

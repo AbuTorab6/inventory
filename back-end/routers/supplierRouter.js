@@ -74,7 +74,7 @@ var updateSupplier = async (req,res)=>
             if(data.modifiedCount==0)
             {
                 res.status(203);
-                res.send("can not update supplier")
+                res.send("you are trying to update the supplier with the same information")
             }
             else
             {

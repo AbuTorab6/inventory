@@ -228,7 +228,7 @@ var deleteCustomer = (id)=>
             }
             else
             {
-                cogoToast.warn("can not update customer");
+                cogoToast.warn("can not delete customer");
                 return false
             }
         }

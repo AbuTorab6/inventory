@@ -61,4 +61,188 @@ var supplierList = (pageNo,perPage,searchKey)=>
 }
 
 
-export {supplierList};
+
+
+
+
+var createSupplier = (supplierName,phone,email,address)=>
+{
+    store.dispatch(showLoader())
+
+    var data = {
+        supplierName:supplierName,
+        phone:phone,
+        email:email,
+        address:address
+    }
+
+    return axios.post(baseURL+'/createSupplier',data,axiosHeader).then
+    (
+        (res)=>
+        {
+            store.dispatch(hideLoader())
+            if(res.status===200)
+            {
+                return true
+            }
+            else if(res.status===206)
+            {
+                cogoToast.warn(res.data);
+                return false
+            }
+            else if(res.status===203)
+            {
+                cogoToast.warn(res.data);
+                return false
+            }
+            else
+            {
+                cogoToast.warn("can not create the supplier.");
+                return false
+            }
+
+        }
+    ).catch
+    (
+        (err)=>
+        {
+            store.dispatch(hideLoader())
+            cogoToast.error("Something is wrong:"+err.message);
+            return false;
+        }
+    )
+
+}
+
+
+
+var supplierDetailById = (id)=>
+{
+    store.dispatch(showLoader())
+    return axios.get(baseURL+'/supplierDetailById/'+id,axiosHeader).then
+    (
+        (res)=>
+        {
+            store.dispatch(hideLoader())
+            if(res.status===200)
+            {
+                return res.data;
+            }
+            else if(res.status===206)
+            {
+                cogoToast.warn(res.data);
+                return false
+            }
+            else if(res.status===203)
+            {
+                cogoToast.warn(res.data);
+                return false
+            }
+            else
+            {
+                cogoToast.warn("can not show the supplier detail");
+                return false
+            }
+        }
+    ).catch
+    (
+        (err)=>
+        {
+            store.dispatch(hideLoader())
+            cogoToast.error("Something is wrong:"+err.message);
+            return false;
+        }
+    )
+}
+
+
+var updateSupplier = (supplierName,phone,email,address,id)=>
+{
+    store.dispatch(showLoader())
+    var data = {
+        supplierName:supplierName,
+        phone:phone,
+        email:email,
+        address:address
+    }
+
+    return axios.post(baseURL+'/updateSupplier/'+id,data,axiosHeader).then
+    (
+        (res)=>
+        {
+            store.dispatch(hideLoader())
+            if(res.status===200)
+            {
+                return true
+            }
+            else if(res.status===206)
+            {
+                cogoToast.warn(res.data);
+                return false
+            }
+            else if(res.status===203)
+            {
+                cogoToast.warn(res.data);
+                return false
+            }
+            else
+            {
+                cogoToast.warn("can not update supplier");
+                return false
+            }
+        }
+    ).catch
+    (
+        (err)=>
+        {
+            store.dispatch(hideLoader())
+            cogoToast.error("Something is wrong:"+err.message);
+            return false;
+        }
+    )
+}
+
+
+
+var deleteSupplier = (id)=>
+{
+    store.dispatch(showLoader())
+    return axios.get(baseURL+'/deleteSupplier/'+id,axiosHeader).then
+    (
+        (res)=>
+        {
+            store.dispatch(hideLoader())
+            if(res.status===200)
+            {
+                return true
+            }
+            else if(res.status===206)
+            {
+                cogoToast.warn(res.data);
+                return false
+            }
+            else if(res.status===203)
+            {
+                cogoToast.warn(res.data);
+                return false
+            }
+            else
+            {
+                cogoToast.warn("can not delete customer");
+                return false
+            }
+        }
+    ).catch
+    (
+        (err)=>
+        {
+            store.dispatch(hideLoader())
+            cogoToast.error("Something is wrong:"+err.message);
+            return false;
+        }
+    )
+}
+
+
+
+export {supplierList,createSupplier,supplierDetailById,updateSupplier,deleteSupplier};
