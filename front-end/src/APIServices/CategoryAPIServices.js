@@ -61,4 +61,142 @@ var categoryList = (pageNo,perPage,searchKey)=>
 }
 
 
-export {categoryList};
+
+
+var createCategory = (name)=>
+{
+    store.dispatch(showLoader())
+
+    var data = {
+        name:name
+    }
+
+    return axios.post(baseURL+'/createCategory',data,axiosHeader).then
+    (
+        (res)=>
+        {
+            store.dispatch(hideLoader())
+            if(res.status===200)
+            {
+                return true
+            }
+            else if(res.status===206)
+            {
+                cogoToast.warn(res.data);
+                return false
+            }
+            else if(res.status===203)
+            {
+                cogoToast.warn(res.data);
+                return false
+            }
+            else
+            {
+                cogoToast.warn("can not create the category.");
+                return false
+            }
+
+        }
+    ).catch
+    (
+        (err)=>
+        {
+            store.dispatch(hideLoader())
+            cogoToast.error("Something is wrong:"+err.message);
+            return false;
+        }
+    )
+
+}
+
+
+
+var categoryDetailById = (id)=>
+{
+    store.dispatch(showLoader())
+    return axios.get(baseURL+'/categoryDetailById/'+id,axiosHeader).then
+    (
+        (res)=>
+        {
+            store.dispatch(hideLoader())
+            if(res.status===200)
+            {
+                return res.data;
+            }
+            else if(res.status===206)
+            {
+                cogoToast.warn(res.data);
+                return false
+            }
+            else if(res.status===203)
+            {
+                cogoToast.warn(res.data);
+                return false
+            }
+            else
+            {
+                cogoToast.warn("can not show the category detail");
+                return false
+            }
+        }
+    ).catch
+    (
+        (err)=>
+        {
+            store.dispatch(hideLoader())
+            cogoToast.error("Something is wrong:"+err.message);
+            return false;
+        }
+    )
+}
+
+
+
+var updateCategory = (name,id)=>
+{
+    store.dispatch(showLoader())
+    var data = {
+        name:name
+    }
+
+    return axios.post(baseURL+'/updateCategory/'+id,data,axiosHeader).then
+    (
+        (res)=>
+        {
+            store.dispatch(hideLoader())
+            if(res.status===200)
+            {
+                return true
+            }
+            else if(res.status===206)
+            {
+                cogoToast.warn(res.data);
+                return false
+            }
+            else if(res.status===203)
+            {
+                cogoToast.warn(res.data);
+                return false
+            }
+            else
+            {
+                cogoToast.warn("can not update category");
+                return false
+            }
+        }
+    ).catch
+    (
+        (err)=>
+        {
+            store.dispatch(hideLoader())
+            cogoToast.error("Something is wrong:"+err.message);
+            return false;
+        }
+    )
+}
+
+
+
+
+
+export {categoryList,createCategory,categoryDetailById,updateCategory};

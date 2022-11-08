@@ -67,7 +67,7 @@ var updateCategory = async (req,res)=>
             if(data.modifiedCount==0)
             {
                 res.status(203);
-                res.send("can not update category name")
+                res.send("you are trying to  update category name with the same information")
             }
             else
             {

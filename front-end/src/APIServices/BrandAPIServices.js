@@ -61,4 +61,143 @@ var brandList = (pageNo,perPage,searchKey)=>
 }
 
 
-export {brandList};
+
+var createBrand = (name)=>
+{
+    store.dispatch(showLoader())
+
+    var data = {
+        name:name
+    }
+
+    return axios.post(baseURL+'/createBrand',data,axiosHeader).then
+    (
+        (res)=>
+        {
+            store.dispatch(hideLoader())
+            if(res.status===200)
+            {
+                return true
+            }
+            else if(res.status===206)
+            {
+                cogoToast.warn(res.data);
+                return false
+            }
+            else if(res.status===203)
+            {
+                cogoToast.warn(res.data);
+                return false
+            }
+            else
+            {
+                cogoToast.warn("can not create the brand.");
+                return false
+            }
+
+        }
+    ).catch
+    (
+        (err)=>
+        {
+            store.dispatch(hideLoader())
+            cogoToast.error("Something is wrong:"+err.message);
+            return false;
+        }
+    )
+
+}
+
+
+
+
+
+
+var brandDetailById = (id)=>
+{
+    store.dispatch(showLoader())
+    return axios.get(baseURL+'/brandDetailById/'+id,axiosHeader).then
+    (
+        (res)=>
+        {
+            store.dispatch(hideLoader())
+            if(res.status===200)
+            {
+                return res.data;
+            }
+            else if(res.status===206)
+            {
+                cogoToast.warn(res.data);
+                return false
+            }
+            else if(res.status===203)
+            {
+                cogoToast.warn(res.data);
+                return false
+            }
+            else
+            {
+                cogoToast.warn("can not show the brand detail");
+                return false
+            }
+        }
+    ).catch
+    (
+        (err)=>
+        {
+            store.dispatch(hideLoader())
+            cogoToast.error("Something is wrong:"+err.message);
+            return false;
+        }
+    )
+}
+
+
+
+var updateBrand = (name,id)=>
+{
+    store.dispatch(showLoader())
+    var data = {
+        name:name
+    }
+
+    return axios.post(baseURL+'/updateBrand/'+id,data,axiosHeader).then
+    (
+        (res)=>
+        {
+            store.dispatch(hideLoader())
+            if(res.status===200)
+            {
+                return true
+            }
+            else if(res.status===206)
+            {
+                cogoToast.warn(res.data);
+                return false
+            }
+            else if(res.status===203)
+            {
+                cogoToast.warn(res.data);
+                return false
+            }
+            else
+            {
+                cogoToast.warn("can not update brand");
+                return false
+            }
+        }
+    ).catch
+    (
+        (err)=>
+        {
+            store.dispatch(hideLoader())
+            cogoToast.error("Something is wrong:"+err.message);
+            return false;
+        }
+    )
+}
+
+
+
+
+export {brandList,createBrand,brandDetailById,updateBrand};

@@ -85,7 +85,7 @@ var URI = 'mongodb+srv://<username>:<password>@cluster0.rl4dqmo.mongodb.net/Inve
 
 var OPTION = {
     user:'ononna',
-    pass:'4567',
+    pass:'2343g',
     autoIndex:true
 }
 

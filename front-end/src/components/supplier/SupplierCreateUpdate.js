@@ -46,7 +46,7 @@ const SupplierCreateUpdate = () =>
         
         if(supplierName.length===0)
         {
-            cogoToast.error("Please Provide customer name");
+            cogoToast.error("Please Provide supplier name");
         }
         else if (phone.length===0)
         {

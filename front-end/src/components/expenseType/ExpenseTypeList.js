@@ -136,7 +136,6 @@ const ExpenseTypeList = () =>
                         <td>{p1.createdDate}</td>
                         <td> 
                         <button  className='table-edit-btn me-2'><Link className='table-edit-btn-link' to={'/expenseTypeCreateUpdate/'+p1._id} ><span ><AiOutlineEdit/></span></Link></button> 
-
                         </td>
                     </tr>
                 )

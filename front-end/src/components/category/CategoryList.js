@@ -6,6 +6,7 @@ import { AiOutlineEdit } from "react-icons/ai";
 import { categoryList } from '../../APIServices/CategoryAPIServices';
 import { setAllCategoryFunc,setTotalFunc } from '../../redux/stateSlice/categoryState';
 import {useDispatch,useSelector} from 'react-redux';
+import { Link } from 'react-router-dom';
 
 import ReactPaginate from 'react-paginate';
 
@@ -133,7 +134,9 @@ const CategoryList = () =>
                         <td> {p2} </td>
                         <td>{p1.name}</td>
                         <td>{p1.createdDate}</td>
-                        <td> <button className='table-edit-btn'><span ><AiOutlineEdit/></span></button></td>
+                        <td> 
+                        <button  className='table-edit-btn me-2'><Link className='table-edit-btn-link' to={'/categoryCreateUpdate/'+p1._id} ><span ><AiOutlineEdit/></span></Link></button>  
+                        </td>
                     </tr>
                 )
             }

@@ -8,6 +8,7 @@ import { AiOutlineEdit } from "react-icons/ai";
 
 import { brandList } from '../../APIServices/BrandAPIServices';
 import { setTotalFunc,setAllBrandFunc } from '../../redux/stateSlice/brandState';
+import { Link } from 'react-router-dom';
 
 import {useDispatch,useSelector} from 'react-redux';
 
@@ -138,7 +139,9 @@ const BrandList = () =>
                         <td> {p2} </td>
                         <td>{p1.name}</td>
                         <td>{p1.createdDate}</td>
-                        <td> <button className='table-edit-btn'><span ><AiOutlineEdit/></span></button></td>
+                        <td>
+                        <button  className='table-edit-btn me-2'><Link className='table-edit-btn-link' to={'/brandCreateUpdate/'+p1._id} ><span ><AiOutlineEdit/></span></Link></button>  
+                        </td>
                     </tr>
                 )
             }

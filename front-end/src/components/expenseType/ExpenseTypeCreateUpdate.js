@@ -37,6 +37,7 @@ const ExpenseTypeCreateUpdate = () =>
     var createUpdateExpenseTypeFunc = ()=>
     {
         var name = document.querySelector('.expenseTypeName').value
+        
         if(name.length===0)
         {
             cogoToast.error("Please Provide expense type name");

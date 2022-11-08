@@ -72,7 +72,7 @@ var updateBrand = async (req,res)=>
             if(data.modifiedCount==0)
             {
                 res.status(203);
-                res.send("can not update brand name")
+                res.send("you are trying to update the brand name with the same information")
             }
             else
             {
