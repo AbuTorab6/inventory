@@ -5,7 +5,8 @@ var expenseState = createSlice(
         name:"expenseState",
         initialState:{
             total:0,
-            allExpense:[]
+            allExpense:[],
+            allExpenseType:[]
         },
         reducers:{
             setTotalFunc:(p1,data)=>
@@ -15,10 +16,14 @@ var expenseState = createSlice(
             setAllExpenseFunc:(p1,data)=>
             {
                 p1.allExpense=data.payload
+            },
+            setAllExpenseTypeFunc:(p1,data)=>
+            {
+                p1.allExpenseType=data.payload;
             }
         }
     }
 )
 
-export const {setTotalFunc,setAllExpenseFunc} = expenseState.actions;
+export const {setTotalFunc,setAllExpenseFunc,setAllExpenseTypeFunc} = expenseState.actions;
 export default expenseState.reducer;

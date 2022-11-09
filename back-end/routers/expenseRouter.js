@@ -70,7 +70,7 @@ var updateExpense = async (req,res)=>
             if(data.modifiedCount==0)
             {
                 res.status(203);
-                res.send("can not update expense")
+                res.send("you are trying to update expense with the same information")
             }
             else
             {

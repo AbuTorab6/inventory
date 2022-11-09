@@ -2,12 +2,17 @@ import React,{Fragment,useEffect,useState} from 'react';
 
 
 import Table from 'react-bootstrap/Table';
-import { AiOutlineEdit } from "react-icons/ai";
+import { AiOutlineEdit,AiOutlineDelete } from "react-icons/ai";
 
-import { expenseList } from '../../APIServices/ExpenseAPIServices';
+import { expenseList,deleteExpense } from '../../APIServices/ExpenseAPIServices';
 import { setAllExpenseFunc,setTotalFunc } from '../../redux/stateSlice/expenseState';
 
 import {useDispatch,useSelector} from 'react-redux';
+import { Link } from 'react-router-dom';
+import Swal from 'sweetalert2'
+import cogoToast from 'cogo-toast';
+
+
 
 import ReactPaginate from 'react-paginate';
 
@@ -18,6 +23,55 @@ const ExpenseList = () =>
 
     const[searchKey,setSearchKey]=useState(0)
     const[perPage,setPerPage]=useState(5);
+
+
+
+    var deleteExpenseFunc = (p2)=>
+    {
+        Swal.fire
+        (
+            {
+                title: 'Are you sure?',
+                text: "You won't be able to revert this!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, delete it!'
+            }
+        ).then
+        (
+            (result)=> 
+            {
+                if (result.isConfirmed) 
+                {
+                    deleteExpense(p2).then
+                    (
+                        (res)=>
+                        {
+                            if(res===true)
+                            {
+                                cogoToast.success("expense deleted successfully")
+                                expenseList(1,perPage,searchKey).then
+                                (
+                                    (res)=>
+                                    {
+                                        if(res!==false)
+                                        {
+
+                                            dispatch(setAllExpenseFunc(res[0].allData));
+                                            dispatch(setTotalFunc(res[0].totalData[0].total))
+                                        }
+                                    }
+                                )
+                            }
+                        }
+                    )
+                }
+          }
+        )
+    }
+
 
 
 
@@ -134,7 +188,10 @@ const ExpenseList = () =>
                         <td>{p1.typeDetail[0].name}</td>
                         <td>{p1.amount}</td>
                         <td>{p1.note}</td>
-                        <td> <button className='table-edit-btn'><span ><AiOutlineEdit/></span></button></td>
+                        <td> 
+                            <button  className='table-edit-btn me-2'><Link className='table-edit-btn-link' to={'/expenseCreateUpdate/'+p1._id} ><span ><AiOutlineEdit/></span></Link></button>
+                            <button onClick={deleteExpenseFunc.bind(this,p1._id)} className='table-delete-btn'><span ><AiOutlineDelete/></span></button> 
+                        </td>
                     </tr>
                 )
             }

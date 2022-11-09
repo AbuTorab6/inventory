@@ -24,6 +24,8 @@ import ExpenseTypeCreateUpdatePage from '../pages/expenseType/ExpenseTypeCreateU
 import BrandCreateUpdatePage from '../pages/brand/BrandCreateUpdatePage';
 import CategoryCreateUpdatePage from '../pages/category/CategoryCreateUpdatePage';
 
+import ExpenseCreateUpdatePage from '../pages/expense/ExpenseCreateUpdatePage';
+
 const MyRouter = () => 
 {
 
@@ -64,6 +66,9 @@ const MyRouter = () =>
 
                             <Route path='/categoryCreateUpdate' element={<CategoryCreateUpdatePage/>}/>
                             <Route path='/categoryCreateUpdate/:id' element={<CategoryCreateUpdatePage/>}/>
+
+                            <Route path='/expenseCreateUpdate' element={<ExpenseCreateUpdatePage/>}/>
+                            <Route path='/expenseCreateUpdate/:id' element={<ExpenseCreateUpdatePage/>}/>
 
                         </Routes>
                     </BrowserRouter>
