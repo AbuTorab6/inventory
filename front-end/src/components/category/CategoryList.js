@@ -1,12 +1,15 @@
 import React,{Fragment,useEffect,useState} from 'react';
 
 import Table from 'react-bootstrap/Table';
-import { AiOutlineEdit } from "react-icons/ai";
+import { AiOutlineEdit,AiOutlineDelete } from "react-icons/ai";
 
-import { categoryList } from '../../APIServices/CategoryAPIServices';
+import { categoryList,deleteCategory } from '../../APIServices/CategoryAPIServices';
 import { setAllCategoryFunc,setTotalFunc } from '../../redux/stateSlice/categoryState';
 import {useDispatch,useSelector} from 'react-redux';
 import { Link } from 'react-router-dom';
+import Swal from 'sweetalert2'
+import cogoToast from 'cogo-toast';
+
 
 import ReactPaginate from 'react-paginate';
 
@@ -17,6 +20,56 @@ const CategoryList = () =>
 
     const[searchKey,setSearchKey]=useState(0)
     const[perPage,setPerPage]=useState(5);
+
+
+
+    var deleteCategoryFunc = (p2)=>
+    {
+        Swal.fire
+        (
+            {
+                title: 'Are you sure?',
+                text: "You won't be able to revert this!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, delete it!'
+            }
+        ).then
+        (
+            (result)=> 
+            {
+                if (result.isConfirmed) 
+                {
+                    deleteCategory(p2).then
+                    (
+                        (res)=>
+                        {
+                            if(res===true)
+                            {
+                                cogoToast.success("category deleted successfully")
+                                categoryList(1,perPage,searchKey).then
+                                (
+                                    (res)=>
+                                    {
+                                        if(res!==false)
+                                        {
+
+                                            dispatch(setAllCategoryFunc(res[0].allData));
+                                            dispatch(setTotalFunc(res[0].totalData[0].total))
+                                        }
+                                    }
+                                )
+                            }
+                        }
+                    )
+                }
+          }
+        )
+    }
+
+
 
     useEffect(()=>{
 
@@ -135,7 +188,8 @@ const CategoryList = () =>
                         <td>{p1.name}</td>
                         <td>{p1.createdDate}</td>
                         <td> 
-                        <button  className='table-edit-btn me-2'><Link className='table-edit-btn-link' to={'/categoryCreateUpdate/'+p1._id} ><span ><AiOutlineEdit/></span></Link></button>  
+                        <button  className='table-edit-btn me-2'><Link className='table-edit-btn-link' to={'/categoryCreateUpdate/'+p1._id} ><span ><AiOutlineEdit/></span></Link></button> 
+                        <button onClick={deleteCategoryFunc.bind(this,p1._id)} className='table-delete-btn'><span ><AiOutlineDelete/></span></button> 
                         </td>
                     </tr>
                 )

@@ -26,7 +26,6 @@ const BrandCreateUpdate = () =>
             )
         }
         
-        
     },[])
 
     var createUpdateBrandFunc = ()=>

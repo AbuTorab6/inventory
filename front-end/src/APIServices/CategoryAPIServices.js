@@ -199,4 +199,47 @@ var updateCategory = (name,id)=>
 
 
 
-export {categoryList,createCategory,categoryDetailById,updateCategory};
+var deleteCategory = (id)=>
+{
+    store.dispatch(showLoader())
+    return axios.get(baseURL+'/deleteCategory/'+id,axiosHeader).then
+    (
+        (res)=>
+        {
+            store.dispatch(hideLoader())
+            if(res.status===200)
+            {
+                return true
+            }
+            else if(res.status===206)
+            {
+                cogoToast.warn(res.data);
+                return false
+            }
+            else if(res.status===203)
+            {
+                cogoToast.warn(res.data);
+                return false
+            }
+            else
+            {
+                cogoToast.warn("can not delete category");
+                return false
+            }
+        }
+    ).catch
+    (
+        (err)=>
+        {
+            store.dispatch(hideLoader())
+            cogoToast.error("Something is wrong:"+err.message);
+            return false;
+        }
+    )
+}
+
+
+
+
+
+export {categoryList,createCategory,categoryDetailById,updateCategory,deleteCategory};

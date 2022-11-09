@@ -2,13 +2,16 @@ import React,{Fragment,useEffect,useState} from 'react';
 
 
 import Table from 'react-bootstrap/Table';
-import { AiOutlineEdit } from "react-icons/ai";
+import { AiOutlineEdit,AiOutlineDelete } from "react-icons/ai";
 
 
 
-import { brandList } from '../../APIServices/BrandAPIServices';
+import { brandList,deleteBrand } from '../../APIServices/BrandAPIServices';
 import { setTotalFunc,setAllBrandFunc } from '../../redux/stateSlice/brandState';
 import { Link } from 'react-router-dom';
+import cogoToast from 'cogo-toast';
+import Swal from 'sweetalert2'
+
 
 import {useDispatch,useSelector} from 'react-redux';
 
@@ -21,6 +24,55 @@ const BrandList = () =>
 
     const[searchKey,setSearchKey]=useState(0)
     const[perPage,setPerPage]=useState(5);
+
+
+
+
+    var deleteBrandFunc = (p2)=>
+    {
+        Swal.fire
+        (
+            {
+                title: 'Are you sure?',
+                text: "You won't be able to revert this!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, delete it!'
+            }
+        ).then
+        (
+            (result)=> 
+            {
+                if (result.isConfirmed) 
+                {
+                    deleteBrand(p2).then
+                    (
+                        (res)=>
+                        {
+                            if(res===true)
+                            {
+                                cogoToast.success("brand deleted successfully")
+                                brandList(1,perPage,searchKey).then
+                                (
+                                    (res)=>
+                                    {
+                                        if(res!==false)
+                                        {
+
+                                            dispatch(setAllBrandFunc(res[0].allData));
+                                            dispatch(setTotalFunc(res[0].totalData[0].total))
+                                        }
+                                    }
+                                )
+                            }
+                        }
+                    )
+                }
+          }
+        )
+    }
 
 
 
@@ -140,7 +192,9 @@ const BrandList = () =>
                         <td>{p1.name}</td>
                         <td>{p1.createdDate}</td>
                         <td>
-                        <button  className='table-edit-btn me-2'><Link className='table-edit-btn-link' to={'/brandCreateUpdate/'+p1._id} ><span ><AiOutlineEdit/></span></Link></button>  
+                        <button  className='table-edit-btn me-2'><Link className='table-edit-btn-link' to={'/brandCreateUpdate/'+p1._id} ><span ><AiOutlineEdit/></span></Link></button>
+                        <button onClick={deleteBrandFunc.bind(this,p1._id)} className='table-delete-btn'><span ><AiOutlineDelete/></span></button>
+  
                         </td>
                     </tr>
                 )
