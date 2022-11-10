@@ -64,6 +64,7 @@ const CustomerList = () =>
                                         {
                                             dispatch(setAllCustomerFunc(res[0].allData));
                                             dispatch(setTotalFunc(res[0].totalData[0].total));
+
                                         }
                                     }
                                 )

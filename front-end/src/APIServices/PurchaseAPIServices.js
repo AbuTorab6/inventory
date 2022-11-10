@@ -26,8 +26,7 @@ var purchaseList = (pageNo,perPage,searchKey)=>
             {
                 if(res.data[0].allData.length==0)
                 {
-                    cogoToast.warn("No data found");
-                    return false;
+                    return res.data;
                 }
                 else
                 {

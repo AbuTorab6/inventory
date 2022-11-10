@@ -61,6 +61,7 @@ const ExpenseList = () =>
 
                                             dispatch(setAllExpenseFunc(res[0].allData));
                                             dispatch(setTotalFunc(res[0].totalData[0].total))
+
                                         }
                                     }
                                 )
@@ -173,6 +174,7 @@ const ExpenseList = () =>
     let total = useSelector((state)=>state.expenseState.total);
 
     var allExpense = useSelector((state)=>state.expenseState.allExpense);
+    console.log("allExpense",allExpense);
     if(allExpense.length===0)
     {
         var allExpenseArr = <h1>No data found</h1>
