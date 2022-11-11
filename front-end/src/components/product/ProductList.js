@@ -2,10 +2,15 @@ import React,{Fragment,useEffect,useState} from 'react';
 
 
 import Table from 'react-bootstrap/Table';
-import { AiOutlineEdit,AiOutlineEye } from "react-icons/ai";
+import { AiOutlineEdit,AiOutlineEye,AiOutlineDelete } from "react-icons/ai";
 
-import { productList } from '../../APIServices/ProductAPIServices';
+import { productList,deleteProduct } from '../../APIServices/ProductAPIServices';
 import { setAllProductFunc,setTotalFunc } from '../../redux/stateSlice/productState';
+
+import { Link } from 'react-router-dom';
+import Swal from 'sweetalert2'
+import cogoToast from 'cogo-toast';
+
 
 import {useDispatch,useSelector} from 'react-redux';
 
@@ -21,6 +26,52 @@ const ProductList = () =>
     const[searchKey,setSearchKey]=useState(0)
     const[perPage,setPerPage]=useState(5);
 
+
+    var deleteProductFunc = (p2)=>
+    {
+        Swal.fire
+        (
+            {
+                title: 'Are you sure?',
+                text: "You won't be able to revert this!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, delete it!'
+            }
+        ).then
+        (
+            (result)=> 
+            {
+                if (result.isConfirmed) 
+                {
+                    deleteProduct(p2).then
+                    (
+                        (res)=>
+                        {
+                            if(res===true)
+                            {
+                                cogoToast.success("product deleted successfully")
+                                productList(1,perPage,searchKey).then
+                                (
+                                    (res)=>
+                                    {
+                                        if(res!==false)
+                                        {
+                        
+                                            dispatch(setAllProductFunc(res[0].allData));
+                                            dispatch(setTotalFunc(res[0].totalData[0].total))
+                                        }
+                                    }
+                                )
+                            }
+                        }
+                    )
+                }
+          }
+        )
+    }
 
 
     useEffect(()=>{
@@ -138,7 +189,10 @@ const ProductList = () =>
                         <td> {p1.unit} </td>
                         <td>{p1.brandDetail[0].name}</td>
                         <td>{p1.categoryDetail[0].name}</td>
-                        <td> <button className='table-edit-btn'><span ><AiOutlineEdit/></span></button> <button className='table-eye-btn'><span ><AiOutlineEye/></span></button></td>
+                        <td> 
+                            <button  className='table-edit-btn me-2'><Link className='table-edit-btn-link' to={'/productCreateUpdate/'+p1._id} ><span ><AiOutlineEdit/></span></Link></button>
+                            <button onClick={deleteProductFunc.bind(this,p1._id)} className='table-delete-btn'><span ><AiOutlineDelete/></span></button> 
+                        </td>
                     </tr>
                 )
             }

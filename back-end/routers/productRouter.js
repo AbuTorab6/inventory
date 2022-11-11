@@ -73,7 +73,7 @@ var updateProduct = async (req,res)=>
             if(data.modifiedCount==0)
             {
                 res.status(203);
-                res.send("can not update product")
+                res.send("you are trying to  update product with the same information")
             }
             else
             {
