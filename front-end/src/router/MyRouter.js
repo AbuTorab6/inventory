@@ -28,6 +28,7 @@ import ExpenseCreateUpdatePage from '../pages/expense/ExpenseCreateUpdatePage';
 import ProductCreateUpdatePage from '../pages/product/ProductCreateUpdatePage';
 
 import ExpenseReportPage from '../pages/report/ExpenseReportPage';
+import PurchaseReportPage from '../pages/report/PurchaseReportPage';
 
 const MyRouter = () => 
 {
@@ -77,6 +78,7 @@ const MyRouter = () =>
                             <Route path='/productCreateUpdate/:id' element={<ProductCreateUpdatePage/>}/>
 
                             <Route path='/expenseReport' element={<ExpenseReportPage/>}/>
+                            <Route path='/purchaseDetailReport' element={<PurchaseReportPage/>}/>
 
                         </Routes>
                     </BrowserRouter>

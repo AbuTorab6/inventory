@@ -15,6 +15,8 @@ var axiosHeader = {
 }
 
 
+
+
 var expenseReport = (fromDate,toDate)=>
 {
     store.dispatch(showLoader())
@@ -65,4 +67,55 @@ var expenseReport = (fromDate,toDate)=>
 
 
 
-export {expenseReport};
+
+
+var purchaseDetailReport = (fromDate,toDate)=>
+{
+    store.dispatch(showLoader())
+    var data = {
+        fromDate:fromDate,
+        toDate:toDate
+    }
+
+
+    return axios.post(baseURL+'/purchaseDetailReport',data,axiosHeader).then
+    (
+        (res)=>
+        {
+            store.dispatch(hideLoader())
+            if(res.status===200)
+            {
+                return res.data
+            }
+            else if(res.status===206)
+            {
+                cogoToast.warn(res.data);
+                return false
+            }
+            else if(res.status===203)
+            {
+                cogoToast.warn(res.data);
+                return false
+            }
+            else
+            {
+                cogoToast.warn("can not show the purchase detail report");
+                return false
+            }
+
+        }
+    ).catch
+    (
+        (err)=>
+        {
+            store.dispatch(hideLoader())
+            cogoToast.error("Something is wrong:"+err.message);
+            return false;
+        }
+    )
+}
+
+
+
+
+export {expenseReport,purchaseDetailReport};
