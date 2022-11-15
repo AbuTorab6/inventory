@@ -118,4 +118,107 @@ var purchaseDetailReport = (fromDate,toDate)=>
 
 
 
-export {expenseReport,purchaseDetailReport};
+var returnDetailReport = (fromDate,toDate)=>
+{
+    store.dispatch(showLoader())
+    var data = {
+        fromDate:fromDate,
+        toDate:toDate
+    }
+
+
+    return axios.post(baseURL+'/returnDetailReport',data,axiosHeader).then
+    (
+        (res)=>
+        {
+            store.dispatch(hideLoader())
+            if(res.status===200)
+            {
+                return res.data
+            }
+            else if(res.status===206)
+            {
+                cogoToast.warn(res.data);
+                return false
+            }
+            else if(res.status===203)
+            {
+                cogoToast.warn(res.data);
+                return false
+            }
+            else
+            {
+                cogoToast.warn("can not show the return detail report");
+                return false
+            }
+
+        }
+    ).catch
+    (
+        (err)=>
+        {
+            store.dispatch(hideLoader())
+            cogoToast.error("Something is wrong:"+err.message);
+            return false;
+        }
+    )
+}
+
+
+
+
+var sellDetailReport = (fromDate,toDate)=>
+{
+    store.dispatch(showLoader())
+    var data = {
+        fromDate:fromDate,
+        toDate:toDate
+    }
+
+
+    return axios.post(baseURL+'/sellDetailReport',data,axiosHeader).then
+    (
+        (res)=>
+        {
+            store.dispatch(hideLoader())
+            if(res.status===200)
+            {
+                return res.data
+            }
+            else if(res.status===206)
+            {
+                cogoToast.warn(res.data);
+                return false
+            }
+            else if(res.status===203)
+            {
+                cogoToast.warn(res.data);
+                return false
+            }
+            else
+            {
+                cogoToast.warn("can not show the sell detail report");
+                return false
+            }
+
+        }
+    ).catch
+    (
+        (err)=>
+        {
+            store.dispatch(hideLoader())
+            cogoToast.error("Something is wrong:"+err.message);
+            return false;
+        }
+    )
+}
+
+
+
+
+
+
+
+
+
+export {expenseReport,purchaseDetailReport,returnDetailReport,sellDetailReport};

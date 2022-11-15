@@ -237,7 +237,7 @@ var deleteReturn = async (req,res)=>
 
 
 
-var purchaseDetailReport = async (req,res)=>
+var returnDetailReport = async (req,res)=>
 {
     var tokenFromPostman = req.headers.authorization;
     var dataFromPostman = req.body;
@@ -332,7 +332,7 @@ router.route('/returnList/:pageNo/:perPage/:searchKey')
 router.route('/deleteReturn/:id')
     .get(deleteReturn)
 router.route('/returnDetailReport')
-    .post(purchaseDetailReport)
+    .post(returnDetailReport)
 router.route('/returnSummary')
     .get(returnSummary)
 

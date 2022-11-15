@@ -5,7 +5,9 @@ var returnState = createSlice(
         name:"returnState",
         initialState:{
             total:0,
-            allReturn:[]
+            allReturn:[],
+            returnReportTotal:0,
+            returnReportData:[]
         },
         reducers:{
             setTotalFunc:(p1,data)=>
@@ -15,10 +17,18 @@ var returnState = createSlice(
             setAllReturnFunc:(p1,data)=>
             {
                 p1.allReturn=data.payload
+            },
+            setReturnReportTotal:(p1,data)=>
+            {
+                p1.returnReportTotal=data.payload
+            },
+            setReturnReportData:(p1,data)=>
+            {
+                p1.returnReportData=data.payload
             }
         }
     }
 )
 
-export const {setTotalFunc,setAllReturnFunc} = returnState.actions;
+export const {setTotalFunc,setAllReturnFunc,setReturnReportTotal,setReturnReportData} = returnState.actions;
 export default returnState.reducer;

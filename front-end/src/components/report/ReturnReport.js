@@ -1,21 +1,23 @@
 import React,{Fragment} from 'react';
 import cogoToast from 'cogo-toast';
 
+
 import exportFromJSON from 'export-from-json'
 import moment from 'moment'
 
-import { purchaseDetailReport } from '../../APIServices/ReportAPIServices';
-import { setPurchaseReportTotal,setPurchaseReportData } from '../../redux/stateSlice/purchaseState';
+import { returnDetailReport } from '../../APIServices/ReportAPIServices';
+import { setReturnReportTotal,setReturnReportData } from '../../redux/stateSlice/returnState';
+
 
 import {useDispatch,useSelector} from 'react-redux';
 
-const PurchaseReport = () => 
+const ReturnReport = () => 
 {
 
     var dispatch = useDispatch();
 
 
-    var purchaseReportFunc = ()=>
+    var returnReportFunc = ()=>
     {
         var fromDate = document.querySelector('.fromDate').value;
         var toDate = document.querySelector('.toDate').value;
@@ -30,7 +32,7 @@ const PurchaseReport = () =>
         }
         else
         {
-            purchaseDetailReport(fromDate+"T00:00:00.000+00:00" ,toDate+"T00:00:00.000+00:00").then
+            returnDetailReport(fromDate+"T00:00:00.000+00:00" ,toDate+"T00:00:00.000+00:00").then
             (
                 (res)=>
                 {
@@ -38,13 +40,13 @@ const PurchaseReport = () =>
                     {
                         if(res[0].data.length===0)
                         {
-                            dispatch(setPurchaseReportTotal(0));
-                            dispatch(setPurchaseReportData([]));
+                            dispatch(setReturnReportTotal(0));
+                            dispatch(setReturnReportData([]));
                         }
                         else
                         {
-                            dispatch(setPurchaseReportTotal(res[0].total[0].totalAmount));
-                            dispatch(setPurchaseReportData(res[0].data));
+                            dispatch(setReturnReportTotal(res[0].total[0].totalAmount));
+                            dispatch(setReturnReportData(res[0].data));
                         }
                         
                     }
@@ -53,9 +55,14 @@ const PurchaseReport = () =>
         }
     }
 
+
+
+
+
+
     var downloadReport = (reportData)=>
     {
-        var fileName = 'purchaseReport';
+        var fileName = 'returnReport';
        var exportType = exportFromJSON.types.csv
 
         if(reportData.length!==0)
@@ -65,7 +72,7 @@ const PurchaseReport = () =>
                 {
                    return(
                     {
-                        "unit purchased":p1.quantity,
+                        "unit return":p1.quantity,
                         "unit cost":p1.unitCost,
                         "total cost":p1.total,
                         "product name":p1.productDetail[0].name,
@@ -87,18 +94,20 @@ const PurchaseReport = () =>
 
 
 
-    let purchaseReportData = useSelector((state)=>state.purchaseState.purchaseReportData);
-    let purchaseReportTotal = useSelector((state)=>state.purchaseState.purchaseReportTotal);
+    
+    let returnReportData = useSelector((state)=>state.returnState.returnReportData);
+    let returnReportTotal = useSelector((state)=>state.returnState.returnReportTotal);
+
 
 
 
 
     return (
         <Fragment>
-            <div className='purchase-report-section'>
+            <div className='return-report-section'>
 
                 <div className='form'>
-                    <h4>Purchase Report By Date</h4>
+                    <h4>Return Report By Date</h4>
                         <form>
                             <div className='report-form-grid'>
                                 
@@ -112,19 +121,19 @@ const PurchaseReport = () =>
                                 </div>
                             </div>
                         </form>
-                    <button onClick={purchaseReportFunc}  className='report-save-btn' >Create</button>
+                    <button onClick={returnReportFunc} className='report-save-btn' >Create</button>
                 </div>
 
                 {
-                    purchaseReportData.length===0 ?
+                    returnReportData.length===0 ?
                     (
                         <div></div>
                     )
                     :
                     (
                         <div className='report-bottom'>
-                            <h6>Total Purchase : {purchaseReportTotal}</h6>
-                            <button onClick={downloadReport.bind(this,purchaseReportData)} className='report-download-btn'>Download CSV</button>
+                            <h6>Total Return : {returnReportTotal}</h6>
+                            <button onClick={downloadReport.bind(this,returnReportData)} className='report-download-btn'>Download CSV</button>
                         </div>
                     )
                 }
@@ -135,4 +144,4 @@ const PurchaseReport = () =>
     );
 };
 
-export default PurchaseReport;
+export default ReturnReport;
