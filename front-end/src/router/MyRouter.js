@@ -32,6 +32,8 @@ import PurchaseReportPage from '../pages/report/PurchaseReportPage';
 import ReturnReportPage from '../pages/report/ReturnReportPage';
 import SellReportPage from '../pages/report/SellReportPage';
 
+import SellCreateUpdatePage from '../pages/sell/SellCreateUpdatePage';
+
 const MyRouter = () => 
 {
 
@@ -83,6 +85,8 @@ const MyRouter = () =>
                             <Route path='/purchaseDetailReport' element={<PurchaseReportPage/>}/>
                             <Route path='/returnDetailReport' element={<ReturnReportPage/>}/>
                             <Route path='/sellDetailReport' element={<SellReportPage/>}/>
+
+                            <Route path='/sellCreateUpdate' element={<SellCreateUpdatePage/>}/>
 
                         </Routes>
                     </BrowserRouter>

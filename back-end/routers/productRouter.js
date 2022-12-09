@@ -273,6 +273,37 @@ var productDetailById = async (req,res)=>
 }
 
 
+var productDropDown = async (req,res)=>
+{
+    var tokenFromPostman = req.headers.authorization;
+    if(tokenFromPostman=='')
+    {
+        res.status(203);
+        res.send("Token is required")
+    }
+    else
+    {
+        try
+        {
+            var dataFromToken = jwt.verify(tokenFromPostman,process.env.KEY);
+
+            var data = await productModel.aggregate([
+                {$match:{userEmail:{$eq:dataFromToken.email}}},
+                {$project:{_id:1,name:1}}
+            ])
+
+            res.status(200);
+            res.send(data)
+
+        }
+        catch(ob)
+        {
+            res.status(206);
+            res.send(ob.message);
+        }
+    }
+}
+
 
 
 
@@ -289,5 +320,7 @@ router.route('/deleteProduct/:id')
     .get(deleteProduct)
 router.route('/productDetailById/:id')
     .get(productDetailById)
+router.route('/productDropDown')
+    .get(productDropDown)
 
 module.exports=router;

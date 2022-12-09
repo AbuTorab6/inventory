@@ -92,7 +92,6 @@ const PurchaseReport = () =>
 
 
 
-
     return (
         <Fragment>
             <div className='purchase-report-section'>

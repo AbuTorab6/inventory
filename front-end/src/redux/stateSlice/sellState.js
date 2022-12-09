@@ -7,7 +7,10 @@ var sellState = createSlice(
             total:0,
             allSell:[],
             sellReportTotal:0,
-            sellReportData:[]
+            sellReportData:[],
+            sellDetail:[],
+            allCustomer:[],
+            allProduct:[]
         },
         reducers:{
             setTotalFunc:(p1,data)=>
@@ -25,10 +28,26 @@ var sellState = createSlice(
             setSellReportData:(p1,data)=>
             {
                 p1.sellReportData=data.payload
+            },
+            addSellDetail:(p1,data)=>
+            {
+                p1.sellDetail.push(data.payload)
+            },
+            removeSellDetail:(p1,data)=>
+            {
+                p1.sellDetail.splice(data.payload,1);
+            },
+            setAllCustomerFunc:(p1,data)=>
+            {
+                p1.allCustomer=data.payload
+            },
+            setAllProductFunc:(p1,data)=>
+            {
+                p1.allProduct=data.payload
             }
         }
     }
 )
 
-export const {setTotalFunc,setAllSellFunc,setSellReportTotal,setSellReportData} = sellState.actions;
+export const {setTotalFunc,setAllSellFunc,setSellReportTotal,setSellReportData,addSellDetail,removeSellDetail,setAllCustomerFunc,setAllProductFunc} = sellState.actions;
 export default sellState.reducer;
