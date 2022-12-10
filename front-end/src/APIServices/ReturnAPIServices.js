@@ -60,4 +60,54 @@ var returnList = (pageNo,perPage,searchKey)=>
 }
 
 
-export {returnList};
+
+
+var createReturn = (parent,child)=>
+{
+    store.dispatch(showLoader())
+
+    var data = {
+        parent:parent,
+        child:child
+    }
+
+
+    return axios.post(baseURL+'/createReturn',data,axiosHeader).then
+    (
+        (res)=>
+        {
+            store.dispatch(hideLoader())
+            if(res.status===200)
+            {
+                return true
+            }
+            else if(res.status===206)
+            {
+                cogoToast.warn(res.data);
+                return false
+            }
+            else if(res.status===203)
+            {
+                cogoToast.warn(res.data);
+                return false
+            }
+            else
+            {
+                cogoToast.warn("can not create the return.");
+                return false
+            }
+
+        }
+    ).catch
+    (
+        (err)=>
+        {
+            store.dispatch(hideLoader())
+            cogoToast.error("Something is wrong:"+err.message);
+            return false;
+        }
+    )
+}
+
+
+export {returnList,createReturn};

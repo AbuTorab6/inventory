@@ -7,7 +7,10 @@ var returnState = createSlice(
             total:0,
             allReturn:[],
             returnReportTotal:0,
-            returnReportData:[]
+            returnReportData:[],
+            returnDetail:[],
+            allCustomer:[],
+            allProduct:[]
         },
         reducers:{
             setTotalFunc:(p1,data)=>
@@ -25,10 +28,26 @@ var returnState = createSlice(
             setReturnReportData:(p1,data)=>
             {
                 p1.returnReportData=data.payload
+            },
+            addReturnDetail:(p1,data)=>
+            {
+                p1.returnDetail.push(data.payload)
+            },
+            removeReturnDetail:(p1,data)=>
+            {
+                p1.returnDetail.splice(data.payload,1);
+            },
+            setAllCustomerFunc:(p1,data)=>
+            {
+                p1.allCustomer=data.payload
+            },
+            setAllProductFunc:(p1,data)=>
+            {
+                p1.allProduct=data.payload
             }
         }
     }
 )
 
-export const {setTotalFunc,setAllReturnFunc,setReturnReportTotal,setReturnReportData} = returnState.actions;
+export const {setTotalFunc,setAllReturnFunc,setReturnReportTotal,setReturnReportData,addReturnDetail,removeReturnDetail,setAllCustomerFunc,setAllProductFunc} = returnState.actions;
 export default returnState.reducer;

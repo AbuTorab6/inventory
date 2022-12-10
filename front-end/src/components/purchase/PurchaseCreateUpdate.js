@@ -7,24 +7,26 @@ import Swal from 'sweetalert2'
 import cogoToast from 'cogo-toast';
 import {useNavigate} from 'react-router-dom'
 
+import { addPurchaseDetail,removePurchaseDetail,setAllProductFunc,setAllSupplierFunc } from '../../redux/stateSlice/purchaseState';
+import { productDropDown } from '../../APIServices/SellAPIServices';
+import { supplierDropdown,createPurchase } from '../../APIServices/PurchaseAPIServices';
 
-import { customerDropdown,productDropDown,createSell } from '../../APIServices/SellAPIServices';
-import { addSellDetail,removeSellDetail,setAllCustomerFunc,setAllProductFunc } from '../../redux/stateSlice/sellState';
-
-const SellCreateUpdate = () => 
+const PurchaseCreateUpdate = () => 
 {
+
     var dispatch = useDispatch();
     var navigate = useNavigate();
 
+
     useEffect(()=>{
 
-        customerDropdown().then
+        supplierDropdown().then
         (
             (res)=>
             {
                 if(res!==false)
                 {
-                    dispatch(setAllCustomerFunc(res));
+                    dispatch(setAllSupplierFunc(res));
                 }
             }
         )
@@ -44,9 +46,7 @@ const SellCreateUpdate = () =>
     },[])
 
 
-
-
-    var addSellDetailFunc = ()=>
+    var addPurchaseDetailFunc = ()=>
     {
         var productId = document.querySelector('.selectProduct').value;
         var productName = document.querySelector('.selectProduct').selectedOptions[0].text;
@@ -67,7 +67,7 @@ const SellCreateUpdate = () =>
         }
         else
         {
-            dispatch(addSellDetail({productId:productId,productName:productName,quantity:quantity,unitCost:unitCost,total:quantity*unitCost}))
+            dispatch(addPurchaseDetail({productId:productId,productName:productName,quantity:quantity,unitCost:unitCost,total:quantity*unitCost}))
             document.querySelector('.selectProduct').value="";
             document.querySelector('.quantity').value="";
             document.querySelector('.unitCost').value="";
@@ -75,10 +75,7 @@ const SellCreateUpdate = () =>
     }
 
 
-
-
-
-    var deleteSellDetailFunc = (p4)=>
+    var deletePurchaseDetailFunc = (p4)=>
     {
         Swal.fire({
             title: 'Are you sure?',
@@ -94,17 +91,15 @@ const SellCreateUpdate = () =>
             {
                 if (result.isConfirmed) 
                 {
-                    dispatch(removeSellDetail(p4))
+                    dispatch(removePurchaseDetail(p4))
                 }
             }
           )
     }
 
 
-
-    
-    var sellDetail = useSelector((state)=>state.sellState.sellDetail)
-    var sellDetailArr = sellDetail.map
+    var purchaseDetail = useSelector((state)=>state.purchaseState.purchaseDetail)
+    var purchaseDetailArr = purchaseDetail.map
     (
         (p1,p2)=>
         {
@@ -115,7 +110,7 @@ const SellCreateUpdate = () =>
                     <td>{p1.unitCost}</td>
                     <td>{p1.total}</td>
                     <td>
-                        <button onClick={deleteSellDetailFunc.bind(this,p2)} className='table-delete-btn'><span ><AiOutlineDelete/></span></button> 
+                        <button onClick={deletePurchaseDetailFunc.bind(this,p2)} className='table-delete-btn'><span ><AiOutlineDelete/></span></button> 
                     </td>
                 </tr>
             )
@@ -123,10 +118,9 @@ const SellCreateUpdate = () =>
     )
 
 
-  
-    var sellCreateUpdateFunc = ()=>
+    var purchaseCreateUpdateFunc = ()=>
     {
-        var child  = sellDetail.map
+        var child  = purchaseDetail.map
         (
             (p1)=>
             {
@@ -136,7 +130,7 @@ const SellCreateUpdate = () =>
             }
         )
 
-        var customerId = document.querySelector('.selectCustomer').value;
+        var supplierId = document.querySelector('.selectCustomer').value;
         var vatTax = document.querySelector('.vatTax').value;
         var discount = document.querySelector('.discount').value;
         var otherCost = document.querySelector('.otherCost').value;
@@ -148,7 +142,7 @@ const SellCreateUpdate = () =>
         {
             cogoToast.error("your product cart can not be empty")
         }
-        else if(customerId.length===0)
+        else if(supplierId.length===0)
         {
             cogoToast.error("please select a customer")
         }
@@ -179,7 +173,7 @@ const SellCreateUpdate = () =>
         else
         {
             var parent = {
-                customerId:customerId,
+                supplierId:supplierId,
                 vatTax:vatTax,
                 discount:discount,
                 otherCost:otherCost,
@@ -188,30 +182,25 @@ const SellCreateUpdate = () =>
                 note:note
             }
             
-            createSell(parent,child).then
+            createPurchase(parent,child).then
             (
                 (res)=>
                 {
                     if(res===true)
                     {
-                        cogoToast.success("sell saved");
+                        cogoToast.success("purchase saved");
 
-                        navigate('/sellList')
+                        navigate('/purchaseList')
                     }
                 }
             )
 
         }
-
-
-       
     }
 
 
-
-
-    var allCustomer = useSelector((state)=>state.sellState.allCustomer)
-    var allProduct = useSelector((state)=>state.sellState.allProduct)
+    var allSupplier = useSelector((state)=>state.purchaseState.allSupplier)
+    var allProduct = useSelector((state)=>state.purchaseState.allProduct)
 
 
     return (
@@ -221,17 +210,17 @@ const SellCreateUpdate = () =>
                 <div className='form'>
                     <div className='sell-form-grid'>
                         <div className='left'>
-                            <h4>Save Sell</h4>
+                            <h4>Save Purchase</h4>
                             <div className='col'>
-                                <label>Select Customer</label>
+                                <label>Select Supplier</label>
                                 <select className='selectCustomer'>
-                                    <option value="">Select Customer</option>
+                                    <option value="">Select Supplier</option>
                                     {
-                                        allCustomer.map(
+                                        allSupplier.map(
                                             (p1,p2)=>
                                             {
                                                 return(
-                                                    <option value={p1._id}>{p1.customerName}</option>
+                                                    <option value={p1._id}>{p1.supplierName}</option>
                                                 )
                                             }
                                         )
@@ -292,7 +281,7 @@ const SellCreateUpdate = () =>
                                 </div>
                                 <div className='col'>
                                     <label>Add to Cart</label>
-                                    <button className='add-to-cart-btn ' onClick={addSellDetailFunc} ><AiOutlineShoppingCart/></button>
+                                    <button className='add-to-cart-btn ' onClick={addPurchaseDetailFunc} ><AiOutlineShoppingCart/></button>
                                 </div>
                             </div>
                             <div>
@@ -307,13 +296,13 @@ const SellCreateUpdate = () =>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        {sellDetailArr}
+                                        {purchaseDetailArr}
                                     </tbody>
                                 </Table>
                             </div>
                         </div>
                     </div>
-                    <button onClick={sellCreateUpdateFunc} className='sell-save-btn' >Save Sell</button>
+                    <button onClick={purchaseCreateUpdateFunc} className='sell-save-btn' >Save Purchase</button>
                 </div>
 
             </div>
@@ -321,4 +310,4 @@ const SellCreateUpdate = () =>
     );
 };
 
-export default SellCreateUpdate;
+export default PurchaseCreateUpdate;

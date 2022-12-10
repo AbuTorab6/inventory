@@ -7,12 +7,14 @@ import Swal from 'sweetalert2'
 import cogoToast from 'cogo-toast';
 import {useNavigate} from 'react-router-dom'
 
+import { addReturnDetail,removeReturnDetail,setAllCustomerFunc,setAllProductFunc } from '../../redux/stateSlice/returnState';
+import { customerDropdown,productDropDown } from '../../APIServices/SellAPIServices';
+import { createReturn } from '../../APIServices/ReturnAPIServices';
 
-import { customerDropdown,productDropDown,createSell } from '../../APIServices/SellAPIServices';
-import { addSellDetail,removeSellDetail,setAllCustomerFunc,setAllProductFunc } from '../../redux/stateSlice/sellState';
 
-const SellCreateUpdate = () => 
+const ReturnCreateUpdate = () => 
 {
+
     var dispatch = useDispatch();
     var navigate = useNavigate();
 
@@ -43,10 +45,7 @@ const SellCreateUpdate = () =>
 
     },[])
 
-
-
-
-    var addSellDetailFunc = ()=>
+    var addReturnDetailFunc = ()=>
     {
         var productId = document.querySelector('.selectProduct').value;
         var productName = document.querySelector('.selectProduct').selectedOptions[0].text;
@@ -67,7 +66,7 @@ const SellCreateUpdate = () =>
         }
         else
         {
-            dispatch(addSellDetail({productId:productId,productName:productName,quantity:quantity,unitCost:unitCost,total:quantity*unitCost}))
+            dispatch(addReturnDetail({productId:productId,productName:productName,quantity:quantity,unitCost:unitCost,total:quantity*unitCost}))
             document.querySelector('.selectProduct').value="";
             document.querySelector('.quantity').value="";
             document.querySelector('.unitCost').value="";
@@ -75,10 +74,7 @@ const SellCreateUpdate = () =>
     }
 
 
-
-
-
-    var deleteSellDetailFunc = (p4)=>
+    var deleteReturnDetailFunc = (p4)=>
     {
         Swal.fire({
             title: 'Are you sure?',
@@ -94,17 +90,14 @@ const SellCreateUpdate = () =>
             {
                 if (result.isConfirmed) 
                 {
-                    dispatch(removeSellDetail(p4))
+                    dispatch(removeReturnDetail(p4))
                 }
             }
           )
     }
 
-
-
-    
-    var sellDetail = useSelector((state)=>state.sellState.sellDetail)
-    var sellDetailArr = sellDetail.map
+    var returnDetail = useSelector((state)=>state.returnState.returnDetail)
+    var returnDetailArr = returnDetail.map
     (
         (p1,p2)=>
         {
@@ -115,7 +108,7 @@ const SellCreateUpdate = () =>
                     <td>{p1.unitCost}</td>
                     <td>{p1.total}</td>
                     <td>
-                        <button onClick={deleteSellDetailFunc.bind(this,p2)} className='table-delete-btn'><span ><AiOutlineDelete/></span></button> 
+                        <button onClick={deleteReturnDetailFunc.bind(this,p2)} className='table-delete-btn'><span ><AiOutlineDelete/></span></button> 
                     </td>
                 </tr>
             )
@@ -123,10 +116,12 @@ const SellCreateUpdate = () =>
     )
 
 
-  
-    var sellCreateUpdateFunc = ()=>
+
+
+
+    var returnCreateUpdateFunc = ()=>
     {
-        var child  = sellDetail.map
+        var child  = returnDetail.map
         (
             (p1)=>
             {
@@ -188,15 +183,15 @@ const SellCreateUpdate = () =>
                 note:note
             }
             
-            createSell(parent,child).then
+            createReturn(parent,child).then
             (
                 (res)=>
                 {
                     if(res===true)
                     {
-                        cogoToast.success("sell saved");
+                        cogoToast.success("return saved");
 
-                        navigate('/sellList')
+                        navigate('/returnList')
                     }
                 }
             )
@@ -210,9 +205,9 @@ const SellCreateUpdate = () =>
 
 
 
-    var allCustomer = useSelector((state)=>state.sellState.allCustomer)
-    var allProduct = useSelector((state)=>state.sellState.allProduct)
 
+    var allCustomer = useSelector((state)=>state.returnState.allCustomer)
+    var allProduct = useSelector((state)=>state.returnState.allProduct)
 
     return (
         <Fragment>
@@ -221,7 +216,7 @@ const SellCreateUpdate = () =>
                 <div className='form'>
                     <div className='sell-form-grid'>
                         <div className='left'>
-                            <h4>Save Sell</h4>
+                            <h4>Save Return</h4>
                             <div className='col'>
                                 <label>Select Customer</label>
                                 <select className='selectCustomer'>
@@ -292,7 +287,7 @@ const SellCreateUpdate = () =>
                                 </div>
                                 <div className='col'>
                                     <label>Add to Cart</label>
-                                    <button className='add-to-cart-btn ' onClick={addSellDetailFunc} ><AiOutlineShoppingCart/></button>
+                                    <button className='add-to-cart-btn ' onClick={addReturnDetailFunc} ><AiOutlineShoppingCart/></button>
                                 </div>
                             </div>
                             <div>
@@ -307,13 +302,13 @@ const SellCreateUpdate = () =>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        {sellDetailArr}
+                                        {returnDetailArr}
                                     </tbody>
                                 </Table>
                             </div>
                         </div>
                     </div>
-                    <button onClick={sellCreateUpdateFunc} className='sell-save-btn' >Save Sell</button>
+                    <button onClick={returnCreateUpdateFunc} className='sell-save-btn' >Save Return</button>
                 </div>
 
             </div>
@@ -321,4 +316,4 @@ const SellCreateUpdate = () =>
     );
 };
 
-export default SellCreateUpdate;
+export default ReturnCreateUpdate;
