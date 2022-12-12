@@ -1,9 +1,11 @@
 import React,{Fragment,useEffect,useState} from 'react';
 
 import Table from 'react-bootstrap/Table';
-import { AiOutlineEye } from "react-icons/ai";
+import { AiOutlineEye,AiOutlineDelete } from "react-icons/ai";
+import Swal from 'sweetalert2'
+import cogoToast from 'cogo-toast';
 
-import { returnList } from '../../APIServices/ReturnAPIServices';
+import { returnList,deleteReturn } from '../../APIServices/ReturnAPIServices';
 import { setAllReturnFunc,setTotalFunc } from '../../redux/stateSlice/returnState';
 
 import {useDispatch,useSelector} from 'react-redux';
@@ -21,6 +23,52 @@ const ReturnList = () =>
     const[perPage,setPerPage]=useState(5);
 
 
+    var deleteReturnFunc = (p2)=>
+    {
+        Swal.fire
+        (
+            {
+                title: 'Are you sure?',
+                text: "You won't be able to revert this!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, delete it!'
+            }
+        ).then
+        (
+            (result)=> 
+            {
+                if (result.isConfirmed) 
+                {
+                    deleteReturn(p2).then
+                    (
+                        (res)=>
+                        {
+                            if(res===true)
+                            {
+                                cogoToast.success("return deleted successfully")
+                               
+                                returnList(1,perPage,searchKey).then
+                                (
+                                    (res)=>
+                                    {
+                                        if(res!==false)
+                                        {
+
+                                            dispatch(setAllReturnFunc(res[0].allData));
+                                            dispatch(setTotalFunc(res[0].totalData[0].total))
+                                        }
+                                    }
+                                )
+                            }
+                        }
+                    )
+                }
+          }
+        )
+    }
 
     useEffect(()=>{
 
@@ -140,7 +188,9 @@ const ReturnList = () =>
                         <td>{p1.otherCost}</td>
                         <td>{p1.discount}</td>
                         <td>{p1.createdDate}</td>
-                        <td> <button className='table-edit-btn'><span ><AiOutlineEye/></span></button> </td>
+                        <td> 
+                            <button onClick={deleteReturnFunc.bind(this,p1._id)} className='table-delete-btn'><span ><AiOutlineDelete/></span></button>
+                        </td>
                     </tr>
                 )
             }

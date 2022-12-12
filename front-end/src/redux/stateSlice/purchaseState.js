@@ -37,6 +37,10 @@ var purchaseState = createSlice(
             {
                 p1.purchaseDetail.splice(data.payload,1);
             },
+            emptyPurchaseDetail:(p1)=>
+            {
+                p1.purchaseDetail=[]
+            },
             setAllSupplierFunc:(p1,data)=>
             {
                 p1.allSupplier=data.payload
@@ -49,5 +53,5 @@ var purchaseState = createSlice(
     }
 )
 
-export const {setTotalFunc,setAllPurchaseFunc,setPurchaseReportTotal,setPurchaseReportData,addPurchaseDetail,removePurchaseDetail,setAllProductFunc,setAllSupplierFunc} = purchaseState.actions;
+export const {setTotalFunc,setAllPurchaseFunc,setPurchaseReportTotal,setPurchaseReportData,addPurchaseDetail,removePurchaseDetail,setAllProductFunc,setAllSupplierFunc,emptyPurchaseDetail} = purchaseState.actions;
 export default purchaseState.reducer;

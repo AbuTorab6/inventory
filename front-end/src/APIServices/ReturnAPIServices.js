@@ -110,4 +110,44 @@ var createReturn = (parent,child)=>
 }
 
 
-export {returnList,createReturn};
+var deleteReturn = (id)=>
+{
+    store.dispatch(showLoader())
+    return axios.get(baseURL+'/deleteReturn/'+id,axiosHeader).then
+    (
+        (res)=>
+        {
+            store.dispatch(hideLoader())
+            if(res.status===200)
+            {
+                return true
+            }
+            else if(res.status===206)
+            {
+                cogoToast.warn(res.data);
+                return false
+            }
+            else if(res.status===203)
+            {
+                cogoToast.warn(res.data);
+                return false
+            }
+            else
+            {
+                cogoToast.warn("can not delete the return");
+                return false
+            }
+        }
+    ).catch
+    (
+        (err)=>
+        {
+            store.dispatch(hideLoader())
+            cogoToast.error("Something is wrong:"+err.message);
+            return false;
+        }
+    )
+}
+
+
+export {returnList,createReturn,deleteReturn};

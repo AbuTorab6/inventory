@@ -7,7 +7,7 @@ import Swal from 'sweetalert2'
 import cogoToast from 'cogo-toast';
 import {useNavigate} from 'react-router-dom'
 
-import { addPurchaseDetail,removePurchaseDetail,setAllProductFunc,setAllSupplierFunc } from '../../redux/stateSlice/purchaseState';
+import { addPurchaseDetail,removePurchaseDetail,setAllProductFunc,setAllSupplierFunc,emptyPurchaseDetail } from '../../redux/stateSlice/purchaseState';
 import { productDropDown } from '../../APIServices/SellAPIServices';
 import { supplierDropdown,createPurchase } from '../../APIServices/PurchaseAPIServices';
 
@@ -19,6 +19,7 @@ const PurchaseCreateUpdate = () =>
 
 
     useEffect(()=>{
+
 
         supplierDropdown().then
         (
@@ -189,6 +190,9 @@ const PurchaseCreateUpdate = () =>
                     if(res===true)
                     {
                         cogoToast.success("purchase saved");
+
+                        //bofore redirect the purchase list page i am making the cart empty
+                        dispatch(emptyPurchaseDetail());
 
                         navigate('/purchaseList')
                     }

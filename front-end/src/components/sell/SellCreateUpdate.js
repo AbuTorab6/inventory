@@ -9,7 +9,7 @@ import {useNavigate} from 'react-router-dom'
 
 
 import { customerDropdown,productDropDown,createSell } from '../../APIServices/SellAPIServices';
-import { addSellDetail,removeSellDetail,setAllCustomerFunc,setAllProductFunc } from '../../redux/stateSlice/sellState';
+import { addSellDetail,removeSellDetail,setAllCustomerFunc,setAllProductFunc,emptySellDetail } from '../../redux/stateSlice/sellState';
 
 const SellCreateUpdate = () => 
 {
@@ -25,6 +25,7 @@ const SellCreateUpdate = () =>
                 if(res!==false)
                 {
                     dispatch(setAllCustomerFunc(res));
+                    
                 }
             }
         )
@@ -195,6 +196,10 @@ const SellCreateUpdate = () =>
                     if(res===true)
                     {
                         cogoToast.success("sell saved");
+
+                        //bofore redirect the sell list page i am making the cart empty
+                        dispatch(emptySellDetail());
+                    
 
                         navigate('/sellList')
                     }

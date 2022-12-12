@@ -37,6 +37,10 @@ var sellState = createSlice(
             {
                 p1.sellDetail.splice(data.payload,1);
             },
+            emptySellDetail:(p1)=>
+            {
+                p1.sellDetail=[]
+            },
             setAllCustomerFunc:(p1,data)=>
             {
                 p1.allCustomer=data.payload
@@ -49,5 +53,5 @@ var sellState = createSlice(
     }
 )
 
-export const {setTotalFunc,setAllSellFunc,setSellReportTotal,setSellReportData,addSellDetail,removeSellDetail,setAllCustomerFunc,setAllProductFunc} = sellState.actions;
+export const {setTotalFunc,setAllSellFunc,setSellReportTotal,setSellReportData,addSellDetail,removeSellDetail,setAllCustomerFunc,setAllProductFunc,emptySellDetail} = sellState.actions;
 export default sellState.reducer;

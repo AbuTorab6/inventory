@@ -7,7 +7,7 @@ import Swal from 'sweetalert2'
 import cogoToast from 'cogo-toast';
 import {useNavigate} from 'react-router-dom'
 
-import { addReturnDetail,removeReturnDetail,setAllCustomerFunc,setAllProductFunc } from '../../redux/stateSlice/returnState';
+import { addReturnDetail,removeReturnDetail,setAllCustomerFunc,setAllProductFunc,emptyReturnDetail } from '../../redux/stateSlice/returnState';
 import { customerDropdown,productDropDown } from '../../APIServices/SellAPIServices';
 import { createReturn } from '../../APIServices/ReturnAPIServices';
 
@@ -27,6 +27,7 @@ const ReturnCreateUpdate = () =>
                 if(res!==false)
                 {
                     dispatch(setAllCustomerFunc(res));
+                    
                 }
             }
         )
@@ -191,6 +192,9 @@ const ReturnCreateUpdate = () =>
                     {
                         cogoToast.success("return saved");
 
+                        //bofore redirect the return list page i am making the cart empty.
+                        dispatch(emptyReturnDetail());
+                    
                         navigate('/returnList')
                     }
                 }
