@@ -203,4 +203,144 @@ var updateUserProfile = (firstName,lastName,mobile,password,photo)=>
 
 
 
-export {userRegistration,userLogin,userProfileDetail,updateUserProfile}
+
+// ***********************************
+// =========Forgot Password========
+// ***********************************
+
+var verifyEmail = (email)=>
+{
+    store.dispatch(showLoader())
+    return axios.get(baseURL+'/verifyEmail/'+email).then
+    (
+        (res)=>
+        {
+            store.dispatch(hideLoader())
+            if(res.status===200)
+            {
+                return true;
+            }
+            else if(res.status===203)
+            {
+                cogoToast.info(res.data);
+                return false
+            }
+            else if(res.status===206)
+            {
+                cogoToast.error(res.data);
+                return false
+            }
+            else
+            {
+                cogoToast.error("Something is wrong!");
+                return false
+            }
+        }
+    ).catch
+    (
+        (err)=>
+        {
+            cogoToast.error("Something is wrong:"+err.message);
+            return false;
+        }
+    )
+}
+
+
+
+var verifyOTPCode = (email,otp)=>
+{
+    store.dispatch(showLoader())
+    return axios.get(baseURL+'/verifyOTPCode/'+email+'/'+otp).then
+    (
+        (res)=>
+        {
+            store.dispatch(hideLoader())
+            if(res.status===200)
+            {
+                return true;
+            }
+            else if(res.status===203)
+            {
+                cogoToast.info(res.data);
+                return false
+            }
+            else if(res.status===206)
+            {
+                cogoToast.error(res.data);
+                return false
+            }
+            else
+            {
+                cogoToast.error("Something is wrong!");
+                return false
+            }
+        }
+    ).catch
+    (
+        (err)=>
+        {
+            cogoToast.error("Something is wrong:"+err.message);
+            return false;
+        }
+    )
+}
+
+
+
+var resetPassword = (email,otp,password)=>
+{
+    store.dispatch(showLoader())
+    var data = {
+        email:email,
+        otp:otp,
+        password:password
+    }
+
+    return axios.post(baseURL+'/resetPassword',data).then
+    (
+        (res)=>
+        {
+            store.dispatch(hideLoader())
+            if(res.status===200)
+            {
+                return true;
+            }
+            else if(res.status===203)
+            {
+                cogoToast.info(res.data);
+                return false
+            }
+            else if(res.status===206)
+            {
+                cogoToast.error(res.data);
+                return false
+            }
+            else
+            {
+                cogoToast.error("Something is wrong!");
+                return false
+            }
+        }
+    ).catch
+    (
+        (err)=>
+        {
+            cogoToast.error("Something is wrong:"+err.message);
+            return false;
+        }
+    )
+}
+
+
+
+
+
+
+
+
+
+
+
+
+export {userRegistration,userLogin,userProfileDetail,updateUserProfile,verifyEmail,verifyOTPCode,resetPassword}

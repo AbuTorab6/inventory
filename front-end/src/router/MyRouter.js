@@ -36,6 +36,10 @@ import SellCreateUpdatePage from '../pages/sell/SellCreateUpdatePage';
 import ReturnCreateUpdatePage from '../pages/return/ReturnCreateUpdatePage';
 import PurchaseCreateUpdatePage from '../pages/purchase/PurchaseCreateUpdatePage';
 
+import SendOTP from '../components/forgotPassword/SendOTP';
+import VerifyOTP from '../components/forgotPassword/VerifyOTP';
+import NewPassword from '../components/forgotPassword/NewPassword';
+
 const MyRouter = () => 
 {
 
@@ -90,8 +94,9 @@ const MyRouter = () =>
 
                             <Route path='/sellCreateUpdate' element={<SellCreateUpdatePage/>}/>
                             <Route path='/returnCreateUpdate' element={<ReturnCreateUpdatePage/>}/>
-                            
                             <Route path='/purchaseCreateUpdate' element={<PurchaseCreateUpdatePage/>}/>
+
+                            
 
                         </Routes>
                     </BrowserRouter>
@@ -108,6 +113,11 @@ const MyRouter = () =>
                             
                             <Route path='/login' element={<LoginPage/>}/>
                             <Route path='/registration' element={<RegistrationPage/>}/>
+
+                            <Route path='/sendOTP' element={<SendOTP/>}/>
+                            <Route path='/verifyOTP' element={<VerifyOTP/>}/>
+                            <Route path='/newPassword' element={<NewPassword/>}/>
+
                             <Route path='*' element={<LoginPage/>}/>
                         </Routes>
                     </BrowserRouter>

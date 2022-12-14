@@ -11,6 +11,7 @@ import productState from '../stateSlice/productState'
 import purchaseState from '../stateSlice/purchaseState'
 import sellState from '../stateSlice/sellState'
 import returnState from '../stateSlice/returnState'
+import dashboardState from '../stateSlice/dashboardState'
 
 export default configureStore(
     {
@@ -25,7 +26,8 @@ export default configureStore(
             productState,
             purchaseState,
             sellState,
-            returnState
+            returnState,
+            dashboardState
         }
     }
 )

@@ -298,7 +298,7 @@ var sellSummary = async (req,res)=>
                 {
                     $facet : {
                         "total":[{$group:{_id:0, totalAmount:{$sum:"$grandTotal"}}}],
-                        "last30Days":[{$group:{_id:{$dateToString:{date:'$createdDate',format:'%Y-%m-%d'}}, totalAmount:{$sum:"$grandTotal"}}},{$sort:{_id:-1}},{$limit:30}]
+                        "last30Days":[{$group:{_id:{$dateToString:{date:'$createdDate',format:'%Y-%m-%d'}}, totalAmount:{$sum:"$grandTotal"}}},{$sort:{_id:1}},{$limit:30}]
                     }
                 }
             ])
